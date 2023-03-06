@@ -1,4 +1,5 @@
-import {Order} from './Order.js';
+//import {Order} from './Order.js';
+import("./Order.js");
 
 class OrderProcessor {
 
@@ -87,3 +88,4 @@ class OrderProcessor {
 
     }
 }
+
