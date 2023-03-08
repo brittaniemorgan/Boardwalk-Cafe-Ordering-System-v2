@@ -10,12 +10,13 @@ class DBManager{
     private $dbname;
     
 
-    function __construct($host, $username, $password, $dbname)
+
+    function __construct()
     {
-        $this->host = $host;
-        $this->username = $username;
-        $this->password = $password;
-        $this->dbname = $dbname;
+          $this->host = 'localhost';
+          $this->username = 'boardwalk_user';
+          $this->password = 'password123';
+          $this->dbname = 'cafeInfo';
 
         
         date_default_timezone_set('EST');
@@ -32,6 +33,11 @@ class DBManager{
         }
         
         
+    }
+
+    function getUsers(){
+      $stmt = $this->conn->query("SELECT * FROM users");
+      return $stmt->fetchAll();
     }
 
     function getConn(){

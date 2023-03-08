@@ -64,23 +64,19 @@
                 
 
                 <?php
-                    require_once 'DBManager.php';
+                    require_once 'Menu.php';
                     require_once 'Rewards.php';
                     #turn on error reporting
                     ini_set('display_errors', 'On');
                     error_reporting(E_ALL | E_STRICT);
 
                     #connects to databse
-                    $host = 'localhost';
-                    $username = 'boardwalk_user';
-                    $password = 'password123';
-                    $dbname = 'cafeInfo';
                     
-                    $db = new DBManager($host, $username, $password, $dbname);
-                    $rewards = new Rewards($db);
+                    $menu = new Menu();
+                    #$rewards = new Rewards($db);
                     
                     #goes through each menu item and prints its data
-                    $results = $db->menuInfo();?>
+                    $results = $menu->getFullMenu();?>
                     
                     <div>
             

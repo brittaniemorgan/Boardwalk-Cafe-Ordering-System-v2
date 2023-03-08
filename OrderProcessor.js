@@ -1,7 +1,7 @@
 //import {Order} from './Order.js';
 import("./Order.js");
 
-class OrderProcessor {
+export class OrderProcessor {
 
     constructor(orderlist) {  // Constructor
       this.orderlist = orderlist;
