@@ -1,4 +1,4 @@
-import {OrderProcessor} from "./OrderProcessor.js" ;
+//import {OrderProcessor} from "./OrderProcessor.js" ;
 import { RequestManager } from "./RequestManager.js";
 window.onload = function(){
     var orderList;
@@ -13,23 +13,31 @@ window.onload = function(){
         overlay.style.display = "block";
     }
 
-    function closePopUp(){
+    var closebutton = document.getElementById("close-btn");
+    closebutton.addEventListener("click",closePopUp);
+    function closePopUp(e){
         var overlay = document.querySelector("#overLay");
         overlay.style.display = "none";
+    }
+
+    var checkout = document.getElementById("check");
+    checkout.addEventListener("click",viewCart);
+    function viewCart(e){
+        reqManager.checkout();
     }
 
     function updateOrderReady(e){
         var btn = e.target;
         var orderId = btn.getAttribute("id");
         console.log(orderId);
-        reqManager.sendUpdate("http://localhost/comp2140-project/Server.php?action=updateReady&orderId=" + orderId, orderId,"ready");
+        reqManager.sendUpdate("http://localhost/comp2171-groupproject/Server.php?action=updateReady&orderId=" + orderId, orderId,"ready");
     }
 
     function updateOrderPreparing(e){
         var btn = e.target;
         var orderId = btn.getAttribute("id");
         console.log(orderId);
-        reqManager.sendUpdate("http://localhost/comp2140-project/Server.php?action=updatePrepare&orderId=" + orderId, orderId,"prep");
+        reqManager.sendUpdate("http://localhost/comp2171-groupproject/Server.php?action=updatePrepare&orderId=" + orderId, orderId,"prep");
     }
 
     var foodButtons = document.getElementsByClassName("addToOrderButton");
@@ -62,6 +70,6 @@ window.onload = function(){
 
     document.getElementById("expandBtn").addEventListener("click", openNav);
     document.getElementById("close-menu-btn").addEventListener("click", closeNav);
-
+    
     
 }

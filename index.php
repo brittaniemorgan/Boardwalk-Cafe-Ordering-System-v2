@@ -1,6 +1,8 @@
 <?php
     session_start();
-
+    if (!isset($_SESSION['cart']))
+    {$_SESSION['cart'] = null;}
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -165,6 +167,7 @@
         
             </div>
         </section>
+        <button type="submit" name="finish" id="check">Ready to Checkout</button>
 <!--
         <aside id="points">
             <?php

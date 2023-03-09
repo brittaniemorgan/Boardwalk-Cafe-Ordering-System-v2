@@ -30,9 +30,13 @@ export class RequestManager{
         request.open("GET", url);
         request.send();   
     }
-
+ 
+    checkout(){
+        let url = "http://localhost/comp2171-groupproject/viewCart.php";
+        window.location.href=url;
+    }
     getFoodDetails(foodID){
-        var url = "http://localhost/comp2140-project/foodDescription.php?foodID=" + foodID;
+        var url = "http://localhost/comp2171-groupproject/Menu.php?foodID=" + foodID;
         this.sendData(url);
     }
 
@@ -44,7 +48,7 @@ export class RequestManager{
                 document.querySelector("#orders-display").innerHTML = request.responseText;
             }}
         }
-        request.open("GET", "http://localhost/comp2140-project/Server.php");
+        request.open("GET", "http://localhost/comp2171-groupproject/Server.php");
         request.send();  
     }
 
@@ -56,7 +60,7 @@ export class RequestManager{
                 document.querySelector("#deliveryAddress-display").innerHTML = request.responseText;
             }}
         }
-        request.open("GET", "http://localhost/comp2140-project/deliveryPersonnel.php");
+        request.open("GET", "http://localhost/comp2171-groupproject/deliveryPersonnel.php");
         request.send();  
     }
     

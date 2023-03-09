@@ -1,36 +1,11 @@
 <?php
 session_start();
 require "DBManager.php";
-$host = 'localhost';
-$username = 'boardwalk_user';
-$password = 'password123';
-$dbname = 'cafeInfo';
-$db = new DBManager($host, $username, $password, $dbname);
+$db = new DBManager();
 $conn = $db -> getConn();
-$items = "";
 
-$foodID = (int) $_POST["foodID"];
-$stmt = $conn->query("SELECT * FROM menuItems WHERE id = $foodID");
-$results = $stmt->fetchAll()[0];
-$name =$results["name"];
-$price = $results["price"];
-if (isset($_POST["mealSize"])){
-    $size = $_POST["mealSize"];
-}
-else{
-    $size = "REG";
-}
-
-
-$comments = $_POST["comments"];
-    if (isset($_POST['foodID'])) {
-        $foodID = (int)$_POST['foodID'];
-        $stmt = $conn->query("SELECT * FROM menuItems WHERE id = $foodID");
-        $product = $stmt->fetchAll()[0];
-   
-    }
-    array_push($_SESSION['user'][2], $product);
-    $products = $_SESSION['user'][2];
+    $products = $_SESSION['cart'];
+    #var_dump($products);
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +24,9 @@ $comments = $_POST["comments"];
             <div class="Header">
                 <h3 class="Cart">Your Cart</h3>
             </div>
-            <form action="placeOrder.php" method="post">
+            <?php  $products = $_SESSION['cart']
+?>
+            <form action="OrderController.php" method="post">
                 <?php if (!$products): ?>
                     <p>You have no products added in your Shopping Cart</p>
                 <?php else:?>
@@ -61,19 +38,20 @@ $comments = $_POST["comments"];
                         </th>
                         <?php   
                             $total = 0;
+                            $items = "";
                             foreach($products as $product): 
-                                $total += $product['price'];
-                                $items .= $product['id'] . " " . $size . ",";
+                                $total += $product[2];
+                                $items .= $product[1] . " " . $product[3] . ",";
                         ?>
                         <tr>
-                            <td class="name"><?=$product['name']?></td>
+                            <td class="name"><?=$product[0]?></td>
                         <?php if(isset($_POST['size'])){?>
-                            <td ><?=$product['name']?></td>
+                            <td ><?=$product[0]?></td>
                         <?php } 
                         else{ ?>
-                            <td class="name"><?=$product['name']?> (<?=$size?>)</td>
+                            <td class="name"><?=$product[0]?> (<?=$product[3]?>)</td>
                         <?php }?>
-                        <td><?=$product['price']?></td>
+                        <td><?=$product[2]?></td>
                         </tr>
                         <?php endforeach;?>
                     </table>
@@ -83,6 +61,7 @@ $comments = $_POST["comments"];
                 
                 <?php 
                     endif; 
+                    #$items = rtrim($items,",");
                     $items = rtrim($items,",");
                 ?>
                 
@@ -111,7 +90,7 @@ $comments = $_POST["comments"];
                         <option value="CARD" >CARD</option>
                     </select>
 
-                    <p><label for="address">Steet Address:</label></p>
+                    <p><label for="address">Street Address:</label></p>
                     <textarea id="address" name="address" rows="3" cols="40" required></textarea>
                     
 

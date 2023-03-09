@@ -1,7 +1,8 @@
 <?php
     require "DBManager.php";
+    require "Customer.php";
 
-    class AuthAdmin{
+    class Login{
         private $stmt;
         private $db;
         private $users;
@@ -19,7 +20,7 @@
             foreach($this->users as $user){
                 $hashPass = hash("sha512", $password);
                 if (hash_equals($user['password'], $hashPass) && $username==$user["name"]){                
-                    return [$user["id"], $user["name"], []];
+                    return new Customer($user["name"], $user["id"], $user["phoneNum"],$user["reward points"]);
                 }
             }
             return false;

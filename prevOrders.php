@@ -1,15 +1,11 @@
 <script src="prevOrders.js" type="text/javascript"></script>
 <?php
     require "DBManager.php";
+    require_once "Customer.php";
     session_start();
-    $host = 'localhost';
-    $username = 'boardwalk_user';
-    $password = 'password123';
-    $dbname = 'cafeInfo';
+    $cusId = $_SESSION['user']->getId();
 
-    $cusId = $_SESSION['user'][0];
-
-    $db = new DBManager($host, $username, $password, $dbname);
+    $db = new DBManager();
     $GLOBALS['db'] = $db;
     $conn = $db->getConn(); 
     $stmt = $conn->query("SELECT * FROM orders WHERE cusId = $cusId ORDER BY status DESC");//dbManager?

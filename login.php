@@ -1,10 +1,10 @@
 <?php
     session_start();
 
-    require_once "AuthAdmin.php";
+    require_once "Login_.php";
     $error_message = '';
     if (isset($_POST['submit'])) {
-        $auth = new AuthAdmin();
+        $auth = new Login();
         $response = $auth->checkPassword($_POST['username'], $_POST['password']);
         $error_message = '';
         if (!$response) {

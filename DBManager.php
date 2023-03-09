@@ -192,17 +192,22 @@ class DBManager{
         }
 
     }
-
+    
+    function getFood($foodID){
+        $stmt = $this->conn->query("SELECT * FROM menuItems WHERE id = $foodID");
+        $results = $stmt->fetchAll();
+        return $results;
+    }
 
     function getFoodDescription($foodID)
     {
         $stmt = $this->conn->query("SELECT * FROM menuItems WHERE id = $foodID");
         $results = $stmt->fetchAll();
-
+#viewCart
 ?>
-        <div>
+        <div> 
             <h2 id="foodName"><?= $results[0]["name"] ?></h2>
-            <form id="" action="viewCart.php" method="post">
+            <form id="" action="OrderController.php" method="post">
                 <textarea name="foodID"  style="display: none;"><?= $foodID ?></textarea>
                 <?php
         if ($results[0]["large_size"] != null):
