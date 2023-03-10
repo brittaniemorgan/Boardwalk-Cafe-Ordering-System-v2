@@ -1,10 +1,6 @@
 window.onload = function(){
     var orderList;
-    class ManageOrdersUI{
-        constructor(){}
-
-
-        saveStatus(url,orderId,action){
+    saveStatus(url,orderId,action){
             let request = new XMLHttpRequest();
             request.onreadystatechange = function(){
             if (request.readyState === XMLHttpRequest.DONE){
@@ -17,6 +13,11 @@ window.onload = function(){
                     }
                 }}
             }
+        class ManageOrdersUI{
+        constructor(){}
+
+
+        
             request.open("GET", url);
             request.send();   
         }
@@ -37,14 +38,14 @@ window.onload = function(){
             var btn = e.target;
             var orderId = btn.getAttribute("id");
             console.log(orderId);
-            this.saveStatus("http://localhost/comp2171-project/ManageOrdersCOnroller.php?action=updateReady&orderId=" + orderId, orderId,"ready");
+            saveStatus("http://localhost/comp2171-project/ManageOrdersCOnroller.php?action=updateReady&orderId=" + orderId, orderId,"ready");
             }
 
         updateOrderPreparing(e){
             var btn = e.target;
             var orderId = btn.getAttribute("id");
             console.log(orderId);
-            this.saveStatus("http://localhost/comp2171-project/ManageOrdersController.php?action=updatePrepare&orderId=" + orderId, orderId,"prep");
+            saveStatus("http://localhost/comp2171-project/ManageOrdersController.php?action=updatePrepare&orderId=" + orderId, orderId,"prep");
             }
 
         main(){
