@@ -1,10 +1,10 @@
 <?php
 
-    require "AuthAdmin.php";
+    require "Login_.php";
     $error_message = "";
     if (isset($_POST['submit'])) {
         if ($_POST['password'] == $_POST['password-re-entry']){
-            $auth = new AuthAdmin();
+            $auth = new Login();
             $_SESSION['user'] = $auth->registerNewUser($_POST['username'], $_POST['password']);
             header('Location: login.php'); 
         }

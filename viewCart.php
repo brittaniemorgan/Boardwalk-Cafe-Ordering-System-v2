@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "DBManager.php";
-$db = new DBManager();
+$db = DBManager::getDatabase();;
 $conn = $db -> getConn();
 
     $products = $_SESSION['cart'];

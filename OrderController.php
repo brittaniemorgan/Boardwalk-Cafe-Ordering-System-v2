@@ -10,7 +10,7 @@ class OrderController{
     private $customer;
 
     function __construct(){
-        $this->db = new DBManager();
+        $this->db = DBManager::getDatabase();
         $this->customer = $_SESSION['user'];
     }
 
