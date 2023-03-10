@@ -5,7 +5,7 @@
     session_start();
     $cusId = $_SESSION['user']->getId();
 
-    $db = new DBManager();
+    $db = DBManager::getDatabase();
     $GLOBALS['db'] = $db;
     $conn = $db->getConn(); 
     $stmt = $conn->query("SELECT * FROM orders WHERE cusId = $cusId ORDER BY status DESC");//dbManager?

@@ -8,7 +8,7 @@
         private $users;
         
         function __construct(){        
-            $this->db = new DBManager();
+            $this->db = DBManager::getDatabase();
             $this->users = $this->db->getUsers();
         }
 

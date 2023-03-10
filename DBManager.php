@@ -8,7 +8,7 @@ class DBManager{
     private $username;
     private $password;
     private $dbname;
-    
+    public static $db; 
 
 
     function __construct()
@@ -31,8 +31,18 @@ class DBManager{
         }catch(Exception $e){
             die($e->getMessage());
         }
+        #add static getDatabase();
+        $db = $this;
         
-        
+    }
+
+    public static function getDatabase(){
+        if (isset($db)){
+            return self::$db;
+        }
+        else{
+            return new DBManager(); 
+        }
     }
 
     function getUsers(){
@@ -197,32 +207,6 @@ class DBManager{
         $stmt = $this->conn->query("SELECT * FROM menuItems WHERE id = $foodID");
         $results = $stmt->fetchAll();
         return $results;
-    }
+    }}
 
-    function getFoodDescription($foodID)
-    {
-        $stmt = $this->conn->query("SELECT * FROM menuItems WHERE id = $foodID");
-        $results = $stmt->fetchAll();
-#viewCart
-?>
-        <div> 
-            <h2 id="foodName"><?= $results[0]["name"] ?></h2>
-            <form id="" action="OrderController.php" method="post">
-                <textarea name="foodID"  style="display: none;"><?= $foodID ?></textarea>
-                <?php
-        if ($results[0]["large_size"] != null):
-                ?>
-                    <p>Please select a meal size</p>
-                    <input type="radio" name="mealSize" value="MED" id="<?= $results[0]["price"] ?>" required> Medium - $<?= $results[0]["price"] ?></input>
-                    <input type="radio" name="mealSize" value="LRG" id="<?= $results[0]["large_price"] ?>"> Large - $<?= $results[0]["large_price"] ?></input>
-
-                <?php else: ?>
-                    <p name="regPrice" id="<?= $results[0]["price"] ?>"> Price $<?= $results[0]["price"] ?></p>
-                <?php endif; ?>       
-                <label for="comments">Comments:</label>
-                <textarea name="comments"></textarea>
-                <button type = "submit" name = "add-to-cart-btn">Add to Cart</button>
-            </form>
-
-        </div>
-        <?php }}?>
+    ?>

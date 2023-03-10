@@ -7,7 +7,7 @@ class Menu{
 
     function __construct()
     {
-        $this->db = new DBManager();
+        $this->db = DBManager::getDatabase();
         
     }
 
