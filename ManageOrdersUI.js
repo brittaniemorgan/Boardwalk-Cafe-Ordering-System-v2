@@ -1,6 +1,5 @@
 window.onload = function(){
-    var orderList;
-    saveStatus(url,orderId,action){
+    function saveStatus(url,orderId,action){
             let request = new XMLHttpRequest();
             request.onreadystatechange = function(){
             if (request.readyState === XMLHttpRequest.DONE){
@@ -13,14 +12,14 @@ window.onload = function(){
                     }
                 }}
             }
-        class ManageOrdersUI{
-        constructor(){}
-
-
-        
             request.open("GET", url);
             request.send();   
-        }
+        } 
+        
+        class ManageOrdersUI{
+       constructor(){}
+
+        
 
         /*displayOrders(){
             let request = new XMLHttpRequest();
@@ -38,7 +37,7 @@ window.onload = function(){
             var btn = e.target;
             var orderId = btn.getAttribute("id");
             console.log(orderId);
-            saveStatus("http://localhost/comp2171-project/ManageOrdersCOnroller.php?action=updateReady&orderId=" + orderId, orderId,"ready");
+            saveStatus("http://localhost/comp2171-project/ManageOrdersController.php?action=updateReady&orderId=" + orderId, orderId,"ready");
             }
 
         updateOrderPreparing(e){
@@ -52,12 +51,12 @@ window.onload = function(){
             //this.displayOrders()
             var readyButtons = document.getElementsByClassName("mark-ready");
             for (var i = 0; i < readyButtons.length ; i++){
-                readyButtons[i].addEventListener("click", updateOrderReady);
+                readyButtons[i].addEventListener("click", this.updateOrderReady);
             }
 
             var prepareButtons = document.getElementsByClassName("mark-preparing");
             for (var i = 0; i < readyButtons.length ; i++){
-                prepareButtons[i].addEventListener("click", updateOrderPreparing);
+                prepareButtons[i].addEventListener("click", this.updateOrderPreparing);
             }   
         }
     }
