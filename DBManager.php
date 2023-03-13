@@ -157,7 +157,12 @@ class DBManager{
         #$stmt = $this->conn->prepare("SELECT id FROM orders ORDER BY :id DESC LIMIT 1");
     }
 
-    
+    function getDateOrders($date){
+        $stmt = $this->conn->query("SELECT * FROM `orders` WHERE MONTH(`date`) = $date");
+        #$stmt->bindParam(':date', $date, PDO::PARAM_STR); not working
+       # echo 
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
    
     function addOrder($total, $items, $genLocation, $address, $cusId, $payment){
         $deliveryPersonnel = "";
