@@ -6,20 +6,21 @@ require_once 'DBManager.php';
 
 class Metrics{
 
-    private $conn;
+    private $db;
     
 
     function __construct($dbmanager)
     {   
         #creates a connection to the database
-        $this->conn = $dbmanager->getConn();
+        $this->db = $dbmanager;
 
     }
 
     function retrieveDB(){
 
         #todays date in the format 03/Jan/2028
-        $date = date('d/M/Y');
+        $date = date('m');
+        #date('Y-m-d')
 
         #count orders forom different locations
         $uwi_count = 0;
@@ -40,14 +41,13 @@ class Metrics{
 
         
         #get todays orders
-        $stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE `date` = :date");
-        $stmt->bindParam(':date', $date, PDO::PARAM_STR);
-        
+       
+        $results = $this->db->getDateOrders($date);
         #tries to execute statement, return error if the database couldnt be queried
-        if($stmt->execute()){
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if(count($results)>=0){
+            #$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $ordersToday = $stmt->rowcount();
+            $ordersToday = count($results);
 
            
             #count the earnings and amount of order placed at each general delivery location (uwi, mona, papine, hope pastures, old hope road and jam college).
@@ -92,8 +92,9 @@ class Metrics{
             }
 
             #finds average time, divides the sum of elapsed time on each order by the numnber of orders
-            
-            $avg_time = round(abs($totalTime/$ordersToday));
+            if($ordersToday>0){ $avg_time = round(abs($totalTime/$ordersToday));}
+            else{$avg_time = 0;}
+           
             
             #return total orders, average time, earnings and number of orders at each location 
             return ['orders_today'=>$ordersToday, 'avg_time'=>$avg_time, 'uwi_num'=>$uwi_count, 'mona_num'=>$mona_count, 'hope_past_num'=>$hope_pastures_count, 'papine_num'=>$papine_count, 'old_hope_num'=>$old_hope_count, 'jc_num'=>$jc_count, 'uwi_earn'=>$uwi_earnings, 'mona_earn'=>$mona_earnings, 'hope_past_earn'=>$hope_pastures_earnings, 'papine_earn'=>$papine_earnings, 'old_hope_earn'=>$old_hope_earnings, 'jc_earn'=>$jc_earnings];

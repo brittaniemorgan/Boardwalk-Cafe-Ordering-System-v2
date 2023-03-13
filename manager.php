@@ -212,12 +212,9 @@ class Manager{
 }
 
 #connects to databse
-$host = 'localhost';
-$username = 'boardwalk_user';
-$password = 'password123';
-$dbname = 'cafeInfo';
 
-$db = new DBManager($host, $username, $password, $dbname);
+
+$db = DBManager::getDatabase();
 $manager = new Manager($db);
 
 if(isset($_POST['add-to-menu'])){

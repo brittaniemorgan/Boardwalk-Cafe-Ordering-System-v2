@@ -64,7 +64,7 @@ CREATE TABLE `orders` (
     `items` varchar(300)  NOT NULL default '',
     `status` char(4) NOT NULL default 'OPEN',
     `delivered` varchar(3) NOT NULL default 'NO',
-    `date` varchar(11) NOT NULL default '',
+    `date` date NOT NULL default '0000-00-00',
     `gen_del_location` varchar(80) NOT NULL default '',
     `address` varchar(100) NOT NULL default '',
     `start_time` varchar(10) NOT NULL default '',
@@ -76,8 +76,8 @@ CREATE TABLE `orders` (
 
 )ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `orders` VALUES (1, 1550, '10 MED, 12 LRG', 'OPEN', 'NO', '26/Nov/2022', 'UWI', 'Sagicor ATM, Leslie Robinson Hall', '02:31 pm', '02:36 pm', 3,'Chad Williams', 'CARD'),
-(2, 550, '1 MED', 'OPEN', 'NO', '26/Nov/2022', 'UWI', 'T5 Mighty Dragons, ELR Towers', '02:31 pm', '02:36 pm', 1,'Chad Williams', 'CARD'),
+INSERT INTO `orders` VALUES (1, 1550, '10 MED, 12 LRG', 'OPEN', 'NO', '2022-11-23', 'UWI', 'Sagicor ATM, Leslie Robinson Hall', '02:31 pm', '02:36 pm', 3,'Chad Williams', 'CARD'),
+(2, 550, '1 MED', 'OPEN', 'NO', '2022-11-26', 'UWI', 'T5 Mighty Dragons, ELR Towers', '02:31 pm', '02:36 pm', 1,'Chad Williams', 'CARD'),
 (3, 1890, '5 MED, 12 LRG', 'OPEN', 'NO', '02/Dec/2022', 'Papine', 'Tastee, Papine Square', '02:35 pm', '02:42 pm', 2, 'Jason Campbell', 'CARD'),
 (4, 150, '4 MED', 'OPEN', 'NO', '02/Dec/2022', 'UWI', 'Taylor Block A', '08:01 am', '08:06 am', 2, 'Chad Williams', 'CARD'),
 (5, 1350, '12 LRG', 'OPEN', 'NO', '02/Dec/2022', 'Mona', 'Mona Road', '08:11 am', '08:14 am',4, 'Jason Campbell', 'CARD'),
@@ -85,8 +85,9 @@ INSERT INTO `orders` VALUES (1, 1550, '10 MED, 12 LRG', 'OPEN', 'NO', '26/Nov/20
 (7, 700, '1 LRG', 'OPEN', 'NO', '02/Dec/2022', 'Old Hope Road', 'Bob Marley Museum', '10:02 am', '10:07 am', 2,'Jason Campbell', 'CARD'),
 (8, 950, '7 MED', 'OPEN', 'NO', '02/Dec/2022', 'Jamaica College', 'Jamaica College Front Gate', '12:31 pm', '12:36 pm', 3,'Jason Campbell', 'CASH'),
 (9, 1990, '16 MED, 20 LRG', 'OPEN', 'NO', '02/Dec/2022', 'UWI', 'Irving Hall, Angels of Genesis Ground Floor', '01:24 pm', '01:30 pm', 1,'Chad Williams', 'CARD'),
-(10, 570, '4 MED', 'OPEN', 'NO', '02/Dec/2022', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm', 6, 'Chad Williams', 'CASH');
-   
+(10, 570, '4 MED', 'OPEN', 'NO', '02/Dec/2022', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm', 6, 'Chad Williams', 'CASH'),
+(11, 570, '4 MED', 'OPEN', 'NO', '2023-03-11', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm', 6, 'Chad Williams', 'CASH');
+ 
 DROP TABLE IF EXISTS `adminUsers`;
 CREATE TABLE `adminUsers` (
     `id` int(10) NOT NULL AUTO_INCREMENT,

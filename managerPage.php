@@ -27,12 +27,8 @@
         error_reporting(E_ALL | E_STRICT);
 
         #connects to databse
-        $host = 'localhost';
-        $username = 'boardwalk_user';
-        $password = 'password123';
-        $dbname = 'cafeInfo';
         
-        $db = new DBManager($host, $username, $password, $dbname);
+        $db = DBManager::getDatabase();
         $manager = new Manager($db);  
     ?>
 
