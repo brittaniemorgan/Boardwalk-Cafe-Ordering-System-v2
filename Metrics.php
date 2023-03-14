@@ -110,7 +110,7 @@ class Metrics{
 
     function generateReport(){
 
-        #get information about the day's performance from the database and represnts it in a graphical form
+        #get information about the day's performance from the database and represents it in a graphical form
         $results = $this->retrieveDB();?>
 
             <h5>There were <?=$results['orders_today']?> orders placed today. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> minutes.</h5>
