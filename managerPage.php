@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager - The Boardwalk Cafe</title>
-    
+    <script src='graphs.js'></script>
     <link rel="stylesheet" href="managerPage.css">
 
 </head>
@@ -180,6 +180,7 @@
     
     <!--Shows business metrics in the form of a graph-->
     <div id = "metrics">
+        <button id="date" value="Today">Today</button>
         <h2>Today's Orders</h2>
         <?php
 

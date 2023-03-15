@@ -109,7 +109,7 @@ class Metrics{
     }
 
     function generateReport(){
-
+        
         #get information about the day's performance from the database and represnts it in a graphical form
         $results = $this->retrieveDB();?>
 
