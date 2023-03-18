@@ -5,7 +5,7 @@ $db = DBManager::getDatabase();;
 $conn = $db -> getConn();
 
     $products = $_SESSION['cart'];
-    #var_dump($products);
+    
 ?>
 
 <!DOCTYPE html>

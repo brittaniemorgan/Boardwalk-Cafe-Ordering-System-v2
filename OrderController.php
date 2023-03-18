@@ -7,11 +7,9 @@ session_start();
 class OrderController{
     private $db;
     private $order;
-    private $customer;
 
     function __construct(){
         $this->db = DBManager::getDatabase();
-        $this->customer = $_SESSION['user'];
     }
 
     function addOrder($itemid,$mealsize){
@@ -23,8 +21,8 @@ class OrderController{
     }
 
     function checkout($address,$payment,$location){
-        $this->order = new Order($this->customer,$_SESSION['cart'],$address);
-        $this->db->addOrder($this->order->calculatePriceb(), $this->order->getMenuItemNames(), $location, $address, $this->customer->getId(), $payment);
+        $this->order = new Order($_SESSION['user'],$_SESSION['cart'],$address);
+        $this->db->addOrder($this->order->calculatePriceb(), $this->order->getMenuItemNames(), $location, $address, $this->order->getCustomer()->getId(), $payment);
 
     }
 

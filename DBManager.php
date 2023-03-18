@@ -166,7 +166,7 @@ class DBManager{
    
     function addOrder($total, $items, $genLocation, $address, $cusId, $payment){
         $deliveryPersonnel = "";
-        $date = date('d/M/Y');
+        $date = date('Y-m-d');
         $start_time = date('h:i a');
         if ($genLocation == "UWI"){
             $deliveryPersonnel = "Chad Williams";

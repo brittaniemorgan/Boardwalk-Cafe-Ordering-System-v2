@@ -28,6 +28,10 @@
         return $this->status;
     }
 
+    function getCustomer(){
+        return $this->customer;
+    }
+
     function getMenuItems(){
         return $this->menuitems;
     }
