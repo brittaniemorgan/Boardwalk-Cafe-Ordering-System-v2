@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager - The Boardwalk Cafe</title>
-    <script src='graphs.js'></script>
+    <script src='graphs.js' type="module"></script>
     <link rel="stylesheet" href="managerPage.css">
 
 </head>
@@ -17,7 +17,6 @@
             //header('Location: index.php');
 
         }*/
-        
         require_once 'DBManager.php';
         require_once 'Metrics.php';
         require_once 'Manager.php';
@@ -29,7 +28,7 @@
         #connects to databse
         
         $db = DBManager::getDatabase();
-        $manager = new Manager($db);  
+        $manager = new Manager();  
     ?>
 
     <div id="hero"> 
@@ -180,8 +179,12 @@
     
     <!--Shows business metrics in the form of a graph-->
     <div id = "metrics">
-        <button id="date" value="Today">Today</button>
+        
+        <button id="date">Switch</button>
         <h2>Today's Orders</h2>
+        <div class = "graph"></div>
+        <div class = "graph"></div>
+        <div class = "graph"></div>
         <?php
 
             $manager->viewMetrics();

@@ -1,17 +1,21 @@
-
+import { RequestManager } from "./RequestManager.js";
 window.onload=function(){
+    var request = new RequestManager();
     var button = document.getElementById("date");
-    var title = document.getElementByTagName("h2")[0];
+    var title = document.getElementsByTagName("h2")[1];
     var list = ['Today','This Month','This Year'];
-    button.addActionListener("click",function(){
-          if (button.innerHTML == 'Today'){
-             button.innerHTML = "This Month";
-             title.innerHTML = "This Month's Orders";}
-          if (button.innerHTML == 'This Month'){
-             button.innerHTML = "This Year";
-             title.innerHTML = "This Year's Orders";}
-	  if (button.innerHTML == 'This Year'){
-             button.innerHTML = "Today";
-             title.innerHTML = "Today's Orders";} 
+    var set = "";
+    button.addEventListener("click",function(){
+          if (title.innerHTML=="Today's Orders"){
+             title.innerHTML = "This Month's Orders";
+             set = "Month" }
+          else if (title.innerHTML=="This Month's Orders"){
+             title.innerHTML = "This Year's Orders";
+             set = "Day";}
+	       else if (title.innerHTML=="This Year's Orders"){
+             title.innerHTML = "Today's Orders";
+             set = "Year";} 
+          request.sendSignal("http://localhost/comp2171-groupproject/Metrics.php","filter="+set); 
+
 });
 }

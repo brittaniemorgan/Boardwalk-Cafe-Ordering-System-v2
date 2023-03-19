@@ -14,6 +14,14 @@ export class RequestManager{
         
     }
 
+    sendSignal(url,parameter){
+        let request = new XMLHttpRequest();
+        request.open("GET", url+"?"+parameter);
+        console.log(url+"?"+parameter);
+        console.log(request.readyState);
+        request.send();  
+    }
+
     sendUpdate(url,orderId,action){
         let request = new XMLHttpRequest();
         request.onreadystatechange = function(){

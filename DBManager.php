@@ -157,10 +157,15 @@ class DBManager{
         #$stmt = $this->conn->prepare("SELECT id FROM orders ORDER BY :id DESC LIMIT 1");
     }
 
-    function getDateOrders($date){
-        $stmt = $this->conn->query("SELECT * FROM `orders` WHERE MONTH(`date`) = $date");
-        #$stmt->bindParam(':date', $date, PDO::PARAM_STR); not working
-       # echo 
+    function getDateOrders($date,$filter){
+        if($filter == 'day'){$stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE `date` = :date");
+           }
+        elseif($filter == 'month'){$stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE MONTH(`date`) = MONTH(:date) AND YEAR(`date`) = YEAR(:date)");
+        }
+        elseif($filter == 'year'){$stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE YEAR(`date`) = YEAR(:date)");
+        }
+        $stmt->bindParam(':date', $date, PDO::PARAM_STR);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
    

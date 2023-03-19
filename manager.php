@@ -8,10 +8,10 @@ class Manager{
     private $conn;
     private $metrics;
 
-    function __construct($dbmanager){
-
-        $this->conn = $dbmanager->getConn();
-        $this->metrics = new Metrics($dbmanager);
+    function __construct(){
+        $db = DBManager::getDatabase();
+        $this->conn = $db->getConn();
+        $this->metrics = new Metrics($db);
         
     }
 
@@ -214,8 +214,8 @@ class Manager{
 #connects to databse
 
 
-$db = DBManager::getDatabase();
-$manager = new Manager($db);
+
+$manager = new Manager();
 
 if(isset($_POST['add-to-menu'])){
     $manager->addMenuItem();
