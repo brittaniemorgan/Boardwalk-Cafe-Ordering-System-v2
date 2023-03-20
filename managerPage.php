@@ -17,8 +17,7 @@
             //header('Location: index.php');
 
         }*/
-        require_once 'DBManager.php';
-        require_once 'Metrics.php';
+        require_once 'Menu.php';
         require_once 'Manager.php';
 
         #turn on error reporting
@@ -27,7 +26,7 @@
 
         #connects to databse
         
-        $db = DBManager::getDatabase();
+        $menu = new Menu();
         $manager = new Manager();  
     ?>
 
@@ -55,7 +54,7 @@
         <table id="current-menu">
             <tr>
             <?php
-                $results = $db->menuInfo();
+                $results = $menu->getFullMenu();
                 foreach($results as $row): ?>
 
                     <td id="small-menu"><?=$row['name'].", ".$row['category'] ?></td>
@@ -99,7 +98,6 @@
             
             <select name="menu-for-edit" id="menu-for-edit">
                 <?php
-                    $results = $db->menuInfo();
                     foreach($results as $row): ?>
                         <option value="<?=$row['id']?>"><?=$row['name'].", ".$row['category'] ?></option>
                 <?php endforeach ?>
@@ -132,7 +130,6 @@
         <form action="Manager.php" method="post"id="delete-form">
             <select name="menu-for-del" id="menu-for-del">
                 <?php
-                    $results = $db->menuInfo();
                     foreach($results as $row): ?>
                         <option value="<?=$row['id']?>"><?=$row['name'].", ".$row['category'] ?></option>
                 
@@ -147,7 +144,7 @@
         <form action="Manager.php" method="post"id="out-stock-form">
             <select name="menu-for-out" id="menu-for-out">
                 <?php
-                    $results = $db->menuInfo();
+                   // $results = $db->menuInfo();
                     foreach($results as $row): ?>
                         <option value="<?=$row['id']?>"><?=$row['name'].", ".$row['category'] ?></option>
                 
@@ -161,7 +158,6 @@
         <form action="Manager.php" method="post"id="in-stock-form">
             <select name="menu-for-in" id="menu-for-out">
                 <?php
-                    $results = $db->menuInfo();
                     foreach($results as $row): ?>
                         <option value="<?=$row['id']?>"><?=$row['name'].", ".$row['category'] ?></option>
                 

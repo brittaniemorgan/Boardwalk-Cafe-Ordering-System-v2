@@ -5,6 +5,8 @@ $db = DBManager::getDatabase();;
 $conn = $db -> getConn();
 
     $products = $_SESSION['cart'];
+
+    
     
 ?>
 
@@ -24,8 +26,7 @@ $conn = $db -> getConn();
             <div class="Header">
                 <h3 class="Cart">Your Cart</h3>
             </div>
-            <?php  $products = $_SESSION['cart']
-?>
+
             <form action="OrderController.php" method="post">
                 <?php if (!$products): ?>
                     <p>You have no products added in your Shopping Cart</p>
@@ -60,7 +61,7 @@ $conn = $db -> getConn();
 
                 
                 <?php 
-                    endif; 
+                   # endif; 
                     #$items = rtrim($items,",");
                     $items = rtrim($items,",");
                 ?>
@@ -102,6 +103,6 @@ $conn = $db -> getConn();
 
             </form>
         </div>
-
+<?php  endif; ?>
     </body>
 </html>

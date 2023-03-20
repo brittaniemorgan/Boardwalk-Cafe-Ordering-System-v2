@@ -1,15 +1,14 @@
 <script src="prevOrders.js" type="text/javascript"></script>
 <?php
-    require "DBManager.php";
-    require_once "Customer.php";
-    session_start();
-    $cusId = $_SESSION['user']->getId();
+    require_once "OrderController.php";
+    require_once "Menu.php";
+   
+   // $cusId = $_SESSION['user']->getId();
 
-    $db = DBManager::getDatabase();
-    $GLOBALS['db'] = $db;
-    $conn = $db->getConn(); 
-    $stmt = $conn->query("SELECT * FROM orders WHERE cusId = $cusId ORDER BY status DESC");//dbManager?
-    $orders = $stmt->fetchAll();
+    //$GLOBALS['db'] = $db;
+    $oc = new OrderController();
+    $menu = new Menu();
+    $orders = $oc->cusOrders();
     foreach($orders as $order):
 ?>
     <div class="order" id="order-<?=$order["id"]?>">
@@ -19,8 +18,8 @@
                 foreach($items as $item):
                     $foodID = explode(" ", $item)[0];
                     $foodSize = explode(" ", $item)[1];
-                    $menuStmt = $conn->query("SELECT * FROM menuitems WHERE id = $foodID");
-                    $foodName = $menuStmt->fetchAll()[0]['name'];
+                    $foods = $menu->getFood($foodID);
+                    $foodName = $foods[0]['name'];
         ?>
             <li><?=$foodName?> (<?=$foodSize?>)</li>
             <?php endforeach?>
@@ -42,7 +41,7 @@
 <?php endforeach;
 
     if (isset($_GET['orderId'])){
-        $GLOBALS['db']->deleteOrder((int) $_GET['orderId']);
+        $oc->deleteOrder((int) $_GET['orderId']);
     }
 ?>
 

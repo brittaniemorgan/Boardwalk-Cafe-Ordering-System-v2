@@ -1,6 +1,6 @@
 <?php
 
-require "DBManager.php";
+require_once "DBManager.php";
 class Menu{
 
     private $db;
@@ -13,6 +13,10 @@ class Menu{
 
     function getFullMenu(){
        return $this->db->menuInfo();
+    }
+
+    function getFood($foodID){
+        return $this->db->getFood($foodID);
     }
 
     function getFoodDescription($foodID)
