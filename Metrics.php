@@ -21,7 +21,7 @@ class Metrics{
          $date = date('Y-m-d');
         
        
-        #count orders forom different locations
+        #count orders from different locations
         $uwi_count = 0;
         $mona_count = 0;
         $hope_pastures_count = 0;
@@ -37,16 +37,15 @@ class Metrics{
         $jc_earnings = 0;
 
         $totalTime = 0;
-
         
         #get todays orders
        
-        $results = $this->db->getDateOrders($date,'year');
+        $results = $this->db->getDateOrders($date,'d');
         #tries to execute statement, return error if the database couldnt be queried
         if(count($results)>=0){
             #$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $ordersToday = count($results);
+            $orders = count($results);
 
            
             #count the earnings and amount of order placed at each general delivery location (uwi, mona, papine, hope pastures, old hope road and jam college).
@@ -91,28 +90,92 @@ class Metrics{
             }
 
             #finds average time, divides the sum of elapsed time on each order by the numnber of orders
-            if($ordersToday>0){ $avg_time = round(abs($totalTime/$ordersToday));}
+            if($orders>0){ $avg_time = round(abs($totalTime/$orders));}
             else{$avg_time = 0;}
            
             
             #return total orders, average time, earnings and number of orders at each location 
-            return ['orders_today'=>$ordersToday, 'avg_time'=>$avg_time, 'uwi_num'=>$uwi_count, 'mona_num'=>$mona_count, 'hope_past_num'=>$hope_pastures_count, 'papine_num'=>$papine_count, 'old_hope_num'=>$old_hope_count, 'jc_num'=>$jc_count, 'uwi_earn'=>$uwi_earnings, 'mona_earn'=>$mona_earnings, 'hope_past_earn'=>$hope_pastures_earnings, 'papine_earn'=>$papine_earnings, 'old_hope_earn'=>$old_hope_earnings, 'jc_earn'=>$jc_earnings];
+            return ['orders'=>$orders, 'avg_time'=>$avg_time, 'uwi_num'=>$uwi_count, 'mona_num'=>$mona_count, 'hope_past_num'=>$hope_pastures_count, 'papine_num'=>$papine_count, 'old_hope_num'=>$old_hope_count, 'jc_num'=>$jc_count, 'uwi_earn'=>$uwi_earnings, 'mona_earn'=>$mona_earnings, 'hope_past_earn'=>$hope_pastures_earnings, 'papine_earn'=>$papine_earnings, 'old_hope_earn'=>$old_hope_earnings, 'jc_earn'=>$jc_earnings];
 
             echo 'information retrieved successfully';
         }else{
             echo 'information couldnt be retrieved';
         }
-
-
         
     }
 
     function generateReport(){
+        echo "Please select a report type:\n";
+        echo "1. Today's result\n";
+        echo "2. Monthly result\n";
+        echo "3. Yearly result\n";
+        
+        $reportType = readline("Enter report type number: ");
+        $date = date('Y-m-d');
+    
+        switch ($reportType) {
+            case 1:
+                $results = $this->db->getDateOrders($date,'d');
+                break;
+            case 2:
+                $results = $this->db->getDateOrders($date,'m');
+                break;
+            case 3:
+                $results = $this->db->getDateOrders($date,'y');
+                break;
+            default:
+                echo "Invalid report type selected\n";
+                return;
+        }
+    
+        if (count($results) > 0) {
+            $orders = count($results);
+            $totalTime = 0;
+    
+            $locationCounts = [
+                'UWI' => 0,
+                'Mona' => 0,
+                'Hope Pastures' => 0,
+                'Papine' => 0,
+                'Old Hope Road' => 0,
+                'Jamaica College' => 0,
+            ];
+    
+            $locationEarnings = [
+                'UWI' => 0,
+                'Mona' => 0,
+                'Hope Pastures' => 0,
+                'Papine' => 0,
+                'Old Hope Road' => 0,
+                'Jamaica College' => 0,
+            ];
+    
+            foreach($results as $row) {
+                $location = $row['gen_del_location'];
+                $locationCounts[$location]++;
+                $locationEarnings[$location] += $row['total'];
+    
+                #find time elapsed in minutes
+                $time1 = strtotime($row['start_time']);
+                $time2 = strtotime($row['end_time']);
+                $difference = abs(($time2 - $time1)/60);
+                $totalTime += $difference;
+            }
+    
+            $avgTime = $orders > 0 ? round($totalTime / $orders) : 0;
+    
+            echo "Total orders: $orders\n";
+            echo "Average time: $avgTime minutes\n";
+    
+            foreach($locationCounts as $location => $count) {
+                $earnings = $locationEarnings[$location];
+                echo "$location: $count orders ($earnings JMD)\n";
+            }
+    
+            # generate graphical representation of the data
+            ?>
 
-        #get information about the day's performance from the database and represents it in a graphical form
-        $results = $this->retrieveDB();?>
-
-            <h5>There were <?=$results['orders_today']?> orders placed today. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> minutes.</h5>
+            <h5>There were <?=$results['orders']?> orders placed. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> minutes.</h5>
 
             <div id="orderRes">
                 <p>Orders placed from UWI - <?=$results['uwi_num']?></p>
@@ -141,48 +204,51 @@ class Metrics{
             <canvas id="earnChart" style="width:100%;max-width:700px"></canvas>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-        <?php echo'
-        <!--JS Library to make charts-->
-        
-        <script>
+            <?php echo'
+            <!--JS Library to make charts-->
+            
+            <script>
 
-            new Chart("numChart", {
-                type: "pie",
-                data: {
-                    labels: ["UWI", "Mona", "Papine", "Hope Pastures", "Old Hope Road", "Jamaica College"],
-                    datasets: [{
-                    backgroundColor: ["#A86959", "#F58F76", "#6BD7F6", "#A88938", "#F5CA5D", "#93BEF5"],
-                    data: ['.$results["uwi_num"].','.$results["mona_num"].','.$results["papine_num"].','.$results["hope_past_num"].','.$results["old_hope_num"].','.$results["jc_num"].']
-                    }]
-                },
-                options: {
-                    title: {
-                    display: true,
-                    text: "Todays Orders Based On Destination"
+                new Chart("numChart", {
+                    type: "pie",
+                    data: {
+                        labels: ["UWI", "Mona", "Papine", "Hope Pastures", "Old Hope Road", "Jamaica College"],
+                        datasets: [{
+                        backgroundColor: ["#A86959", "#F58F76", "#6BD7F6", "#A88938", "#F5CA5D", "#93BEF5"],
+                        data: ['.$results["uwi_num"].','.$results["mona_num"].','.$results["papine_num"].','.$results["hope_past_num"].','.$results["old_hope_num"].','.$results["jc_num"].']
+                        }]
+                    },
+                    options: {
+                        title: {
+                        display: true,
+                        text: "Todays Orders Based On Destination"
+                        }
                     }
-                }
-            });
+                });
 
-            new Chart("earnChart", {
-                type: "bar",
-                data: {
-                    labels: ["UWI", "Mona", "Papine", "Hope Pastures", "Old Hope Road", "Jamaica College"],
-                    datasets: [{
-                    backgroundColor: ["#A86959", "#F58F76", "#6BD7F6", "#A88938", "#F5CA5D", "#93BEF5"],
-                    data: ['.$results["uwi_earn"].','.$results["mona_earn"].','.$results["papine_earn"].','.$results["hope_past_earn"].','.$results["old_hope_earn"].','.$results["jc_earn"].']
-                    }]
-                },
-                options: {
-                    legend: {display: false},
-                    title: {
-                    display: true,
-                    text: "Todays Earnings Based On Destination"
+                new Chart("earnChart", {
+                    type: "bar",
+                    data: {
+                        labels: ["UWI", "Mona", "Papine", "Hope Pastures", "Old Hope Road", "Jamaica College"],
+                        datasets: [{
+                        backgroundColor: ["#A86959", "#F58F76", "#6BD7F6", "#A88938", "#F5CA5D", "#93BEF5"],
+                        data: ['.$results["uwi_earn"].','.$results["mona_earn"].','.$results["papine_earn"].','.$results["hope_past_earn"].','.$results["old_hope_earn"].','.$results["jc_earn"].']
+                        }]
+                    },
+                    options: {
+                        legend: {display: false},
+                        title: {
+                        display: true,
+                        text: "Todays Earnings Based On Destination"
+                        }
                     }
-                }
-            });
+                });
 
-        </script>';
+            </script>';
 
+        } else {
+            echo "No orders found for selected report type\n";
+        }
     }
 }
 
