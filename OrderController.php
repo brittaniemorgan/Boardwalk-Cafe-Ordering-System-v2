@@ -1,7 +1,7 @@
 <?php
 require "DBManager.php";
-require "Customer.php";
 require "Order.php";
+
 session_start();
 
 class OrderController{
@@ -36,6 +36,40 @@ class OrderController{
         $this->db->addOrder($this->order->calculatePriceb(), $this->order->getMenuItemNames(), $location, $address, $this->order->getCustomer()->getId(), $payment);
 
     }
+
+    function editOrderStatus($orderId, $newStatus){
+        //should these be setters in the Order class?'
+        if($newStatus == "updateReady"){
+            $time = date("h:i a");
+            $stmt = $this->db->getConn()->prepare("UPDATE `orders` SET `status` = 'CLSD', `end_time` = :time WHERE `id` = :orderId");
+            $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+            $stmt->bindParam(':time', $time, PDO::PARAM_STR);
+        
+            if($stmt->execute()){
+                    echo 'status updated';
+            }else{
+                    echo 'couldnt updated status';
+            }
+        }
+        if($newStatus == "updatePrepare"){
+            $stmt = $this->db->getConn()->prepare("UPDATE `orders` SET `status` = 'PREP' WHERE `id` = :orderId");
+            $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+        
+            if($stmt->execute()){
+                    echo 'status updated';
+            }else{
+                    echo 'could not update status';
+            }
+        }
+        #$this->viewOrders();               
+    }
+
+    function updateDelivery($orderId){
+          
+        $stmt = $this->db->getConn()->prepare("UPDATE `orders` SET `delivered` = 'YES' WHERE `id` = :orderId");
+        $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+        $stmt->execute();
+  }
 
 
 }?>

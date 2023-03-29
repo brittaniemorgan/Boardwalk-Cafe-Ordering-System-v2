@@ -1,38 +1,3 @@
-<?php
-    session_start();
-
-
-    require_once "Login_.php";
-    $error_message = '';
-    if (isset($_POST['submit'])) {
-        $auth = new Login();
-        $response = $auth->verifyAdmin($_POST['username'], $_POST['password']);
-        $error_message = '';
-        if (!$response) {
-            $error_message = "Incorrect username or password";
-        }
-        else{
-            $_SESSION['admin'] = $response;
-            switch($_SESSION['admin'][2]){
-                case 'manager':
-                    header('Location: managerPage.php'); 
-                    break;
-                case 'server':
-                    header('Location: Server.php'); 
-                    break;
-                case 'delivery personnel':
-                    header('Location: deliveryPersonnel.php'); 
-                    break;
-                case 'chef': 
-                    header('Location: Server.php');
-                    break;
-            }            
-        }
-     
-        
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +19,21 @@
         <strong><?php echo $error_message; ?></strong>
     </div>
     <?php } ?>
-    <!--<a href="userSignUp.HTML">Create New Account</a>-->
     
 </body>
 </html>
+
+<?php
+    session_start();
+    require_once "Login_.php";
+    
+    $error_message = '';
+    if (isset($_POST['submit'])) {
+        $auth = new Login();
+        $response = $auth->verifyAdmin($_POST['username'], $_POST['password']);
+        $error_message = '';
+        if (!$response) {
+            $error_message = "Incorrect username or password";
+        }
+    }
+?>

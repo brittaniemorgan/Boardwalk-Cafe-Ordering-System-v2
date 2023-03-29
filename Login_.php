@@ -32,11 +32,30 @@
             foreach($adminLog as $user){
                 $hashPass = hash("sha512", $password);       
                 if (hash_equals($user['password'], $hashPass) && $username==$user["name"]){                
-                    return [$user["id"], $user["name"], $user["role"]];
+                    $_SESSION['admin'] = [$user["id"], $user["name"], $user["role"]];
+                    
+                    switch($_SESSION['admin'][2]){
+                    case 'manager':
+                        header('Location: managerPage.php'); 
+                        break;
+                    case 'server':
+                        header('Location: ManageOrdersUI.php'); 
+                        break;
+                    case 'UWI Delivery':
+                        header('Location: ManageDeliveriesUI.php'); 
+                        break;
+                    case 'General Delivery':
+                        header('Location: ManageDeliveriesUI.php'); 
+                        break;
+                    case 'chef': 
+                        header('Location: ManageOrderssUI.php');
+                        break;
+                    }            
                 }
             }
             return false;
         }
+    
 
         function registerNewUser($name, $password){
             echo "hello";

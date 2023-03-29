@@ -2,7 +2,7 @@
  require_once "Customer.php";
  class Order {
 
-    private static $ordernum = 1;
+    private static $orderCount = 1;
     private $customer;
     private $orderNum;
     private $address;
@@ -11,13 +11,11 @@
 
     function __construct($customer, $menuitemslst, $address) {  // Constructor
         $this->customer = $customer;
-       # $this->orderNum = $ordernum;
         $this->address = $address;
         $this->status = "Pending";
         $this->menuitems = $menuitemslst;
-      #  $ordernum = $ordernum + 1;
-
-      
+        //$this->orderNum = self::$orderCount;
+        //self::$orderCount += 1;
     }
 
     function getAddress(){
@@ -45,11 +43,13 @@
         return rtrim($names,", ");
     }
 
-    function calculatePrice($menuitems){
+  
+
+   /**function calculatePrice($menuitems){
         for ($i=0; $i<$menuitems.length; $i++)
             $total = menuitems[i].getPrice();
         return $total;
-    }
+    }*/
 
     function calculatePriceb(){
         $total = 0;

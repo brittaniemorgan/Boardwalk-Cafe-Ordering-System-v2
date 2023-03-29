@@ -98,8 +98,8 @@ CREATE TABLE `adminUsers` (
 
 )ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `adminUsers` VALUES(1, "Morell Parker", "2fc9a362afd9f22ccf6e48f655c790f448a9a15f5459f659a3c7ef9678b6cc190fc4b646acd3ba812e9185dd30e2a558fbcc797076bcc4a6da9e29989dc03c40", "manager"),
-(2, "S.Morgan", "925f43c3cfb956bbe3c6aa8023ba7ad5cfa21d104186fffc69e768e55940d9653b1cd36fba614fba2e1844f4436da20f83750c6ec1db356da154691bdd71a9b1", "chef"),
-(3, "Jason Campbell", "daef4953b9783365cad6615223720506cc46c5167cd16ab500fa597aa08ff964eb24fb19687f34d7665f778fcb6c5358fc0a5b81e1662cf90f73a2671c53f991", "delivery personnel"),
-(4, "R.Brown", "daef4953b9783365cad6615223720506cc46c5167cd16ab500fa597aa08ff964eb24fb19687f34d7665f778fcb6c5358fc0a5b81e1662cf90f73a2671c53f991", "server"),
-(5, "Chad Williams", "925f43c3cfb956bbe3c6aa8023ba7ad5cfa21d104186fffc69e768e55940d9653b1cd36fba614fba2e1844f4436da20f83750c6ec1db356da154691bdd71a9b1", "delivery personnel");
+INSERT INTO `adminUsers` VALUES(1, "Morell Parker", "2bbe0c48b91a7d1b8a6753a8b9cbe1db16b84379f3f91fe115621284df7a48f1cd71e9beb90ea614c7bd924250aa9e446a866725e685a65df5d139a5cd180dc9", "manager"),
+(2, "S.Morgan", "2bbe0c48b91a7d1b8a6753a8b9cbe1db16b84379f3f91fe115621284df7a48f1cd71e9beb90ea614c7bd924250aa9e446a866725e685a65df5d139a5cd180dc9", "chef"),
+(3, "Jason Campbell", "2bbe0c48b91a7d1b8a6753a8b9cbe1db16b84379f3f91fe115621284df7a48f1cd71e9beb90ea614c7bd924250aa9e446a866725e685a65df5d139a5cd180dc9", "General Delivery"),
+(4, "R.Brown", "2bbe0c48b91a7d1b8a6753a8b9cbe1db16b84379f3f91fe115621284df7a48f1cd71e9beb90ea614c7bd924250aa9e446a866725e685a65df5d139a5cd180dc9", "server"),
+(5, "Chad Williams", "2bbe0c48b91a7d1b8a6753a8b9cbe1db16b84379f3f91fe115621284df7a48f1cd71e9beb90ea614c7bd924250aa9e446a866725e685a65df5d139a5cd180dc9", "UWI Delivery");
