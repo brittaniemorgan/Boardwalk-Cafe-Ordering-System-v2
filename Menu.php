@@ -1,6 +1,7 @@
 <?php
 
 require_once "DBManager.php";
+require "MenuItem.php";
 class Menu{
 
     private $db;
@@ -16,7 +17,12 @@ class Menu{
     }
 
     function getFood($foodID){
-        return $this->db->getFood($foodID);
+        $menu = $this->db->getFood($foodID);
+        $menuitems = [];
+        foreach($menu as $row){
+               $row = new MenuItem($row);
+               array_push($menuitems,$row);}
+        return $menu;
     }
 
     function getFoodDescription($foodID)
