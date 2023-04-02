@@ -88,6 +88,13 @@ class DBManager{
         }
     }
 
+    function updateUserReward($reward,$userid){
+        $stmt = $this->conn->prepare("UPDATE `users` SET `reward points` = :reward WHERE `id` = :id");
+        $stmt->bindParam(':reward', $reward, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $userid, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+    
     
     #working
     function addUser($name, $password){
@@ -129,6 +136,46 @@ class DBManager{
         }
     }
 
+    function cusDetails($cusId){
+        
+        $stmt = $this->conn->prepare("SELECT * FROM `users` WHERE `id` = :cusId");
+        $stmt->bindParam(':cusId', $cusId, PDO::PARAM_INT);
+
+        if($stmt->execute()){
+            if($stmt->rowCount() > 0){
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);       
+                return $result;
+
+            }else{
+                return 'couldnt find order';
+            }
+
+        }else{
+            return 'an error';
+        }
+
+       }
+
+    function orderDetails($orderId){
+        
+        $stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE `id` = :orderId");
+        $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
+
+        if($stmt->execute()){
+            if($stmt->rowCount() > 0){
+                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);       
+                return $results;
+
+            }else{
+                return 'couldnt find order';
+            }
+
+        }else{
+            return 'an error';
+        }
+
+       }
+
     
     function orderInfo($orderId){
         
@@ -158,11 +205,11 @@ class DBManager{
     }
 
     function getDateOrders($date,$filter){
-        if($filter == 'day'){$stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE `date` = :date");
+        if($filter == 'd'){$stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE `date` = :date");
            }
-        elseif($filter == 'month'){$stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE MONTH(`date`) = MONTH(:date) AND YEAR(`date`) = YEAR(:date)");
+        elseif($filter == 'm'){$stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE MONTH(`date`) = MONTH(:date) AND YEAR(`date`) = YEAR(:date)");
         }
-        elseif($filter == 'year'){$stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE YEAR(`date`) = YEAR(:date)");
+        elseif($filter == 'y'){$stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE YEAR(`date`) = YEAR(:date)");
         }
         $stmt->bindParam(':date', $date, PDO::PARAM_STR);
         $stmt->execute();

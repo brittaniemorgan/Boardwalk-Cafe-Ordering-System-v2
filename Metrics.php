@@ -15,7 +15,7 @@ class Metrics{
 
     }
 
-    function retrieveDB(){
+    function retrieveDB($filter){
              #todays date in the format 03/Jan/2028
        # $date = date('m'); #current month
          $date = date('Y-m-d');
@@ -40,7 +40,7 @@ class Metrics{
         
         #get todays orders
        
-        $results = $this->db->getDateOrders($date,'d');
+        $results = $this->db->getDateOrders($date,$filter);
         #tries to execute statement, return error if the database couldnt be queried
         if(count($results)>=0){
             #$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -105,76 +105,8 @@ class Metrics{
     }
 
     function generateReport(){
-        echo "Please select a report type:\n";
-        echo "1. Today's result\n";
-        echo "2. Monthly result\n";
-        echo "3. Yearly result\n";
-        
-        $reportType = readline("Enter report type number: ");
-        $date = date('Y-m-d');
-    
-        switch ($reportType) {
-            case 1:
-                $results = $this->db->getDateOrders($date,'d');
-                break;
-            case 2:
-                $results = $this->db->getDateOrders($date,'m');
-                break;
-            case 3:
-                $results = $this->db->getDateOrders($date,'y');
-                break;
-            default:
-                echo "Invalid report type selected\n";
-                return;
-        }
-    
-        if (count($results) > 0) {
-            $orders = count($results);
-            $totalTime = 0;
-    
-            $locationCounts = [
-                'UWI' => 0,
-                'Mona' => 0,
-                'Hope Pastures' => 0,
-                'Papine' => 0,
-                'Old Hope Road' => 0,
-                'Jamaica College' => 0,
-            ];
-    
-            $locationEarnings = [
-                'UWI' => 0,
-                'Mona' => 0,
-                'Hope Pastures' => 0,
-                'Papine' => 0,
-                'Old Hope Road' => 0,
-                'Jamaica College' => 0,
-            ];
-    
-            foreach($results as $row) {
-                $location = $row['gen_del_location'];
-                $locationCounts[$location]++;
-                $locationEarnings[$location] += $row['total'];
-    
-                #find time elapsed in minutes
-                $time1 = strtotime($row['start_time']);
-                $time2 = strtotime($row['end_time']);
-                $difference = abs(($time2 - $time1)/60);
-                $totalTime += $difference;
-            }
-    
-            $avgTime = $orders > 0 ? round($totalTime / $orders) : 0;
-    
-            echo "Total orders: $orders\n";
-            echo "Average time: $avgTime minutes\n";
-    
-            foreach($locationCounts as $location => $count) {
-                $earnings = $locationEarnings[$location];
-                echo "$location: $count orders ($earnings JMD)\n";
-            }
-    
-            # generate graphical representation of the data
+             $results = $this->retrieveDB('y');   # generate graphical representation of the data
             ?>
-
             <h5>There were <?=$results['orders']?> orders placed. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> minutes.</h5>
 
             <div id="orderRes">
@@ -221,7 +153,7 @@ class Metrics{
                     options: {
                         title: {
                         display: true,
-                        text: "Todays Orders Based On Destination"
+                        text: "This Year Orders Based On Destination"
                         }
                     }
                 });
@@ -239,17 +171,15 @@ class Metrics{
                         legend: {display: false},
                         title: {
                         display: true,
-                        text: "Todays Earnings Based On Destination"
+                        text: "This Year Earnings Based On Destination"
                         }
                     }
                 });
 
             </script>';
 
-        } else {
-            echo "No orders found for selected report type\n";
-        }
+        } 
     }
-}
+
 
 ?>

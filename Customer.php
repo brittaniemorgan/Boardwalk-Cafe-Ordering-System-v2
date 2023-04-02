@@ -19,8 +19,8 @@ class Customer{
     function getId(){return $this->id;}
    # function getAddress(){return $this->address;}
     function getTelephoneNo(){return $this->telephoneNo;}
-    function getReward(){return $this->reward;}
-   #function updateRewards(){}
+    function getRewards(){return $this->reward;}
+    function updateRewards($reward){$this->reward= $reward;}
 
 }
 

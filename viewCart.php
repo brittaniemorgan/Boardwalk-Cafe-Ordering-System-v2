@@ -1,9 +1,9 @@
 <?php
+require_once "Customer.php";
 session_start();
-require "DBManager.php";
-$db = DBManager::getDatabase();;
+require_once "DBManager.php";
+$db = DBManager::getDatabase();
 $conn = $db -> getConn();
-
     $products = $_SESSION['cart'];
 
     
@@ -55,14 +55,22 @@ $conn = $db -> getConn();
                         <td><?=$product[2]?></td>
                         </tr>
                         <?php endforeach;?>
+                        <tr></tr>
+                        <tr>
+                          <td class="name">Total</td>
+                          <td class="name"><?=count($products)?> Items</td>
+                          <td>$<?=$total?>.00</td>
+                       </tr>
                     </table>
                 </div>              
 
 
                 
                 <?php 
+                   #reward points
                    # endif; 
                     #$items = rtrim($items,",");
+                    $reward = $_SESSION['user']->getRewards();
                     $items = rtrim($items,",");
                 ?>
                 
@@ -73,7 +81,6 @@ $conn = $db -> getConn();
                         </div>
                         <div class="total-value">$<?=$total?>.00</div>
                     </div>
-
                     <p><label for="general-location">General Location:</label></p>
                     
                     <select name="glocation" required>
@@ -90,7 +97,10 @@ $conn = $db -> getConn();
                         <option value="CASH" >CASH</option>
                         <option value="CARD" >CARD</option>
                     </select>
-
+                    <br>
+                    <label for="reward">Apply Reward Points</label>
+                    <input type="checkbox" id="reward" name="reward_p" value="<?=$reward?>">
+                    <p>(Current <?=$reward?>)</p>
                     <p><label for="address">Street Address:</label></p>
                     <textarea id="address" name="address" rows="3" cols="40" required></textarea>
                     

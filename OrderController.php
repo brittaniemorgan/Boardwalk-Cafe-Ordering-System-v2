@@ -10,6 +10,7 @@ class OrderController{
 
     function __construct(){
         $this->db = DBManager::getDatabase();
+
     }
 
     function deleteOrder($orderId){
@@ -31,10 +32,10 @@ class OrderController{
         return $stmt->fetchAll();
     }
 
-    function checkout($address,$payment,$location){
+    function checkout($address,$payment,$location,$reward){
         $this->order = new Order($_SESSION['user'],$_SESSION['cart'],$address);
-        $this->db->addOrder($this->order->calculatePriceb(), $this->order->getMenuItemNames(), $location, $address, $this->order->getCustomer()->getId(), $payment);
-
+        $this->db->addOrder($this->order->calculatePrice($reward), $this->order->getMenuItemNames(), $location, $address, $this->order->getCustomer()->getId(), $payment);
+        $_SESSION['user'] = $this->order->getCustomer();
     }
 
     function editOrderStatus($orderId, $newStatus){
@@ -47,6 +48,9 @@ class OrderController{
         
             if($stmt->execute()){
                     echo 'status updated';
+                    $sorder = $this->db->orderDetails($orderId)[0];
+                    $scus = $this->db->cusDetails($sorder['cusId'])[0];
+                    Order::applyRewards($scus['reward points'],$sorder['total'],$sorder['cusId']);
             }else{
                     echo 'couldnt updated status';
             }
@@ -79,9 +83,14 @@ if(isset($_POST["payment"]))
 {
     $location = $_POST['glocation'];
     $payment = $_POST["payment"];
+    if (isset($_POST["reward_p"])){
+         $reward = true;}
+    else{
+         $reward = false;
+    }
     $address = htmlspecialchars($_POST['address']);
     $OC = new OrderController();
-    $OC->checkout($address,$payment,$location);
+    $OC->checkout($address,$payment,$location,$reward);
     unset($_SESSION['cart']);
     header('Location: index.php');
 }
