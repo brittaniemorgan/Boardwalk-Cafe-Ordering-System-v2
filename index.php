@@ -67,7 +67,7 @@
 
                 <?php
                     require_once 'Menu.php';
-                    require_once 'Rewards.php';
+                    #require_once 'Rewards.php';
                     #turn on error reporting
                     ini_set('display_errors', 'On');
                     error_reporting(E_ALL | E_STRICT);

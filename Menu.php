@@ -22,7 +22,7 @@ class Menu{
         foreach($menu as $row){
                $row = new MenuItem($row);
                array_push($menuitems,$row);}
-        return $menu;
+        return $menuitems;
     }
 
     function getFoodDescription($foodID)

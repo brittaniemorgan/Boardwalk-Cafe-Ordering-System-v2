@@ -2,6 +2,7 @@
 
 class MenuItem{
 
+    private $item;
     private $id;
     private $name;
     private $category;
@@ -14,6 +15,7 @@ class MenuItem{
 
     function __construct($item)
     {
+        $this->item = $item;
         $this->id = $item['id'];
         $this->name = $item['name'];
         $this->price = $item['price'];
@@ -22,6 +24,10 @@ class MenuItem{
         $this->lsize = $item['large_size'];
         $this->image = $item['image'];
         $this->stock = $item['in_stock'];
+    }
+
+    function getItem(){
+        return $this->item;
     }
 
     function getId(){
