@@ -20,11 +20,19 @@ class OrderController{
 
     function addOrder($itemid,$mealsize){
         $order = $this->db->getFood($itemid)[0]; 
-        if ($_SESSION["cart"]==null){//use menuitems instead
-            $_SESSION["cart"][0] = [$order['name'],$order['id'],$order['price'],$mealsize];
+        $price = $order['price'];
+        if ($mealsize == "LRG"){
+            $price = $order['large_price'];
         }
-        else{array_push($_SESSION["cart"],[$order['name'],$order['id'],$order['price'],$mealsize]);}  
-    }
+        
+        if ($_SESSION["cart"]==null){
+            $_SESSION["cart"][0] = [$order['name'],$order['id'],$price,$mealsize];
+        }
+        else{
+            array_push($_SESSION["cart"],[$order['name'],$order['id'],$price,$mealsize]);
+        }
+        }
+
 
     function cusOrders(){
         $cusId = $_SESSION['user']->getId();

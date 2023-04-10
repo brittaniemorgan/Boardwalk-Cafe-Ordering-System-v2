@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="index.css">
 <?php
- 
+/**
+*@package Database
+*/
 class DBManager{
 
     private $conn;
