@@ -36,7 +36,7 @@
                     
                     switch($_SESSION['admin'][2]){
                     case 'manager':
-                        header('Location: managerPage.php'); 
+                        header('Location: UpdateMenuUI.php'); 
                         break;
                     case 'server':
                         header('Location: ManageOrdersUI.php'); 
@@ -48,7 +48,7 @@
                         header('Location: ManageDeliveriesUI.php'); 
                         break;
                     case 'chef': 
-                        header('Location: ManageOrderssUI.php');
+                        header('Location: ManageOrdersUI.php');
                         break;
                     }            
                 }
