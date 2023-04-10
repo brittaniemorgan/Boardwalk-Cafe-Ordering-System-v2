@@ -15,7 +15,7 @@
     function __construct($customer, $menuitemslst, $address) {  //add discount // Constructor
         $this->customer = $customer;
         $this->address = $address;
-        $this->status = "Pending";
+        $this->status = "OPEN";
         $this->menuitems = $menuitemslst;
         $this->db = DBManager::getDatabase();
         //$this->orderNum = self::$orderCount;
@@ -46,6 +46,11 @@
         }
         return rtrim($names,", ");
     }
+
+    function setStatus($status){
+        $this->status = $status;
+    }
+
 
     public static function applyRewards($reward,$total,$cusId){
        $newR = $reward + floor($total/1000);

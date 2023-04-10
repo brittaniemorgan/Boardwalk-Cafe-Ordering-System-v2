@@ -23,37 +23,39 @@
             $this->conn = $this->db->getConn();
             $this->stmt = $this->conn->query("SELECT * FROM `orders` WHERE `status` = 'OPEN' OR `status` = 'PREP' ORDER BY `id` ASC");
             $this->orders = $this->stmt->fetchAll();
-            foreach($this->orders as $order){
-                $order = new Order($order['cusId'],$order['items'], $order['address']);
-            }
-            
             
         }
-        public function viewOrders(){
-            
+
+        public function viewOrders(){            
            ?>
             <div id="order-list" >
             <?php 
             foreach($this->orders as $order):
-                $orderStatus = $order["status"];
-                $orderNum = $order['id'];   //get this from attribute
-                $order = new Order($order['cusId'],$order['items'], $order['address']);
+                $orderNum = $order['id']; 
+                $orderStatus = $order['status'];
+                $orderItems = [];
+                foreach(explode(", ", $order['items']) as $item){
+                    $item = explode(" ", $item);
+                    $itemID = $item[0];
+                    $size = $item[1];
+                    $stmt = $this->conn->prepare("SELECT * FROM `menuitems` WHERE `id` = :itemID");
+                    $stmt->bindParam("itemID", $itemID, PDO::PARAM_INT);
+                    $stmt->execute();
+                    array_push($orderItems, new MenuItem($stmt->fetchAll()[0]));
+                }
+                $order = new Order($order['cusId'],$orderItems, $order['address']);
+                
             ?>
             
             <div class = "orderDiv" id="orderDiv<?=$orderNum?>">
                 <h3>Order #<?=$orderNum?></h3>
                 <ul><?php
-                    $items = explode(",",$order->getMenuItems());
+                    $items = $order->getMenuItems();
                     foreach($items as $item):
-                        $foodID = (int) substr($item,0,2);
-                        $foodItems = $this->db->getConn()->query("SELECT * FROM menuItems WHERE id =$foodID");
-                        $foodResult = $foodItems->fetchAll();
-                        $foodName = $foodResult[0]["name"];
-                        $foodCategory = $foodResult[0]["category"];
                 ?>
                     
-                        <li id="<?=$orderNum?>>"><?=$foodName?>, <?=substr($item,2)?></li>
-                        <p class="item-category">Category: <?=$foodCategory?></p>
+                        <li id="<?=$orderNum?>>"><?=$item->getName()?>, <?=$size?></li>
+                        <p class="item-category">Category: <?=$item->getCategory()?></p>
                     <?php endforeach?>
                 </ul>
                 <p class="order-status-" id="order-status-<?=$orderNum?>">Status: <?=$orderStatus?></p>
@@ -73,9 +75,8 @@
             $stmt->execute();
         }
             public function getOrder($orderNo){
-                //not sure where to use this
                 foreach($this->orders as $order){
-                    if ($order['id'] == $orderNo){
+                    if ($order[0] == $orderNo){
                         return $order;     
                     }     
                 }

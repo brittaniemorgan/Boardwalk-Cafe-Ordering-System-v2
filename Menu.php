@@ -1,7 +1,6 @@
 <?php
 
 require_once "DBManager.php";
-require "MenuItem.php";
 class Menu{
 
     private $db;

@@ -66,7 +66,15 @@
                 $genArea = $delivery["gen_del_location"];
                 $cost = $delivery['total'];
                 $orderNum = $delivery['id'];   //should we save a number to the database instead of having the database increment the id?
-                $delivery = new Order($delivery['cusId'],$delivery['items'], $delivery['address']);
+                $orderItems = [];
+                foreach(explode(", ", $delivery['items']) as $item){
+                  $itemID = $item[0];
+                  $stmt = $this->conn->prepare("SELECT * FROM `menuitems` WHERE `id` = :itemID");
+                  $stmt->bindParam("itemID", $itemID, PDO::PARAM_INT);
+                  $stmt->execute();
+                  array_push($orderItems, new MenuItem($stmt->fetchAll()[0]));
+                }
+                $delivery = new Order($delivery['cusId'],$orderItems, $delivery['address']);
               ?>
 
             

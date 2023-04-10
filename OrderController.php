@@ -1,6 +1,7 @@
 <?php
 require "DBManager.php";
 require "Order.php";
+require "MenuItem.php";
 
 session_start();
 

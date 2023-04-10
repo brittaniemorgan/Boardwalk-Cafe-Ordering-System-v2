@@ -19,11 +19,12 @@ class MenuItem{
         $this->id = $item['id'];
         $this->name = $item['name'];
         $this->price = $item['price'];
-        $this->large_price = $item['large_prize'];
+        $this->large_price = $item['large_price'];
         $this->msize = $item['medium_size'];
         $this->lsize = $item['large_size'];
         $this->image = $item['image'];
         $this->stock = $item['in_stock'];
+        $this->category = $item['category'];
     }
 
     function getItem(){
@@ -34,6 +35,33 @@ class MenuItem{
        return $this->id;
     }
 
+    function getCategory(){
+        return $this->category;
+     }
+
+     function getName(){
+        return $this->name;
+     }
+
+     function getImage(){
+        return $this->image;
+     }
+
+     function getLrgPrice(){
+      return $this->large_price;
+   }
+
+   function getPrice(){
+      return $this->price;
+   }
+    
+   function getMedSize(){
+      return $this->msize;
+   }
+
+   function getLrgSize(){
+      return $this->lsize;
+   }
 
 } 
 

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require("MenuItem.php");
     if (!isset($_SESSION['cart']))
     {$_SESSION['cart'] = null;}
     
@@ -85,36 +86,36 @@
                     <?php
                         #iterates through each row of the data base
                         for ($x = 0; $x < count($results); $x++){ 
-
+                            $menuItem = new MenuItem($results[$x]);
                             #checks if item is out of stock, if it is its button is disabled and it has an out of stock message
                             if($results[$x]['in_stock'] === 'NO'){
                                 #prints item category when item is the first one in the category       
-                                if($x > 0 and $results[$x-1]['category'] != $results[$x]['category']){?>
-                                    <h3 class="category-heading"><?=$results[$x]['category']?></h3>
+                                if($x > 0 and $results[$x-1]['category'] != $menuItem->getCategory()){?>
+                                    <h3 class="category-heading"><?=$menuItem->getCategory()?></h3>
                                 <?php }elseif($x === 0){?>
-                                    <h3 class="category-heading"><?=$results[$x]['category']?></h3>
+                                    <h3 class="category-heading"><?=$menuItem->getCategory()?></h3>
                                 <?php } ?>
                                         
                                 
-                                <button class="addToOrderButtonDisabled"  id="<?=$results[$x]["id"]?>"disabled>
+                                <button class="addToOrderButtonDisabled"  id="<?=$menuItem->getId()?>"disabled>
                                     <div class="menuItem">
-                                        <img src=<?="images/".$results[$x]['image']?> class="menuItemPic">
+                                        <img src=<?="images/".$menuItem->getImage()?> class="menuItemPic">
                             
-                                        <div class="menuItemContent"  id="<?=$results[$x]["id"]?>">
+                                        <div class="menuItemContent"  id="<?=$menuItem->getId()?>">
                                             <h5>OUT OF STOCK</h5>
-                                            <h5 itemid="<?=$results[$x]["id"]?>"><?=$results[$x]['name']?></h5>
+                                            <h5 itemid="<?=$menuItem->getId()?>"><?=$menuItem->getName()?></h5>
                                             <div class="prices">
                                                 <?php 
                                                     #checks if the item comes in a large size and prints the large size value
-                                                    if(intval($results[$x]['large_price']) > 0 and intval($results[$x]['price']) > 0){?>
+                                                    if(intval($menuItem->getLrgPrice()) > 0 and intval($menuItem->getPrice())> 0){?>
                                                             
-                                                        <h6><?=$results[$x]['medium_size']?> - $<?=$results[$x]['price']?></h6>
-                                                        <h6><?=$results[$x]['large_size']?> - $<?=$results[$x]['large_price']?></h6>
+                                                        <h6><?=$menuItem->getMedSize()?> - $<?=$menuItem->getPrice()?></h6>
+                                                        <h6><?=$menuItem->getLrgSize()?> - $<?=$menuItem->getLrgPrice()?></h6>
                                                             
                                                             
-                                                    <?php }elseif(intval($results[$x]['price']) > 0){?>
+                                                    <?php }elseif(intval($menuItem->getPrice()) > 0){?>
                                                             
-                                                        <h6>Price - $<?=$results[$x]['price']?></h6>
+                                                        <h6>Price - $<?=$menuItem->getPrice()?></h6>
                                                     <?php } ?>       
                                                                 
                                                     
@@ -126,32 +127,32 @@
                             <?php }else{
 
                             #prints item category when item is the first one in the category       
-                            if($x > 0 and $results[$x-1]['category'] != $results[$x]['category']){?>
-                                <h3 class="category-heading"><?=$results[$x]['category']?></h3>
+                            if($x > 0 and $results[$x-1]['category'] != $menuItem->getCategory()){?>
+                                <h3 class="category-heading"><?=$menuItem->getCategory()?></h3>
                             <?php }elseif($x === 0){?>
-                                <h3 class="category-heading"><?=$results[$x]['category']?></h3>
+                                <h3 class="category-heading"><?=$menuItem->getCategory()?></h3>
                             <?php } ?>
                                     
                            
-                            <button class="addToOrderButton" id="<?=$results[$x]["id"]?>">
-                                <div class="menuItem" id="<?=$results[$x]["id"]?>">
-                                    <img src=<?="images/".$results[$x]['image']?> class="menuItemPic" itemid="<?=$results[$x]["id"]?>">
+                            <button class="addToOrderButton" id="<?=$menuItem->getId()?>">
+                                <div class="menuItem" id="<?=$menuItem->getId()?>">
+                                    <img src=<?="images/".$menuItem->getImage()?> class="menuItemPic" itemid="<?=$menuItem->getId()?>">
                         
-                                    <div class="menuItemContent" id="<?=$results[$x]["id"]?>" itemid="<?=$results[$x]["id"]?>">
+                                    <div class="menuItemContent" id="<?=$menuItem->getId()?>" itemid="<?=$menuItem->getId()?>">
                                         
                                         <h5><?=$results[$x]['name']?></h5>
                                         <div class="prices">
                                             <?php 
                                                 #checks if the item comes in a large size and prints the large size value
-                                                if(intval($results[$x]['large_price']) > 0 and intval($results[$x]['price']) > 0){?>
+                                                if(intval($menuItem->getLrgPrice()) > 0 and intval($menuItem->getPrice()) > 0){?>
                                                         
-                                                    <h6><?=$results[$x]['medium_size']?> - $<?=$results[$x]['price']?></h6>
-                                                    <h6><?=$results[$x]['large_size']?> - $<?=$results[$x]['large_price']?></h6>
+                                                    <h6><?=$menuItem->getMedSize()?> - $<?=$menuItem->getPrice()?></h6>
+                                                    <h6><?=$menuItem->getLrgSize()?> - $<?=$menuItem->getLrgPrice()?></h6>
                                                         
                                                         
-                                                <?php }elseif(intval($results[$x]['price']) > 0){?>
+                                                <?php }elseif(intval($menuItem->getPrice()) > 0){?>
                                                         
-                                                    <h6>Price - $<?=$results[$x]['price']?></h6>
+                                                    <h6>Price - $<?=$menuItem->getPrice()?></h6>
                                                 <?php } ?>       
                                                             
                                                 

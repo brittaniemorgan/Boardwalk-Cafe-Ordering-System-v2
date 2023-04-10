@@ -7,6 +7,20 @@
     <title>Log In</title>
 </head>
 <body>
+<?php
+    session_start();
+    require_once "Login_.php";
+    
+    $error_message = '';
+    if (isset($_POST['submit'])) {
+        $auth = new Login();
+        $response = $auth->verifyAdmin($_POST['username'], $_POST['password']);
+        $error_message = '';
+        if (!$response) {
+            $error_message = "Incorrect username or password";
+        }
+    }
+?>
     <form action="adminLogin.php" method="post">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="username" required>
@@ -23,17 +37,3 @@
 </body>
 </html>
 
-<?php
-    session_start();
-    require_once "Login_.php";
-    
-    $error_message = '';
-    if (isset($_POST['submit'])) {
-        $auth = new Login();
-        $response = $auth->verifyAdmin($_POST['username'], $_POST['password']);
-        $error_message = '';
-        if (!$response) {
-            $error_message = "Incorrect username or password";
-        }
-    }
-?>
