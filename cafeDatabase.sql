@@ -54,8 +54,8 @@ CREATE TABLE `users` (
 
 )ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `users` VALUES(1, "John", "3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2", 20,876948523),
-(2, "Mary", "7b61e5b16e3f9d685578819e9ded8ca15f4095043895fc325da208255d91f7c8d6a166fe9b52cfdebb17960dab24687d91e7e4bff81f2468695387f804bf1a0d", 50,876468503);
+INSERT INTO `users` VALUES(1, "John", "2bbe0c48b91a7d1b8a6753a8b9cbe1db16b84379f3f91fe115621284df7a48f1cd71e9beb90ea614c7bd924250aa9e446a866725e685a65df5d139a5cd180dc9", 20,876948523),
+(2, "Mary", "2bbe0c48b91a7d1b8a6753a8b9cbe1db16b84379f3f91fe115621284df7a48f1cd71e9beb90ea614c7bd924250aa9e446a866725e685a65df5d139a5cd180dc9", 50,876468503);
 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
@@ -76,17 +76,17 @@ CREATE TABLE `orders` (
 
 )ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `orders` VALUES (1, 1550, '10 MED, 12 LRG', 'OPEN', 'NO', '2022-11-26', 'UWI', 'Sagicor ATM, Leslie Robinson Hall', '02:31 pm', '02:36 pm', 3,'Chad Williams', 'CARD'),
+INSERT INTO `orders` VALUES (1, 1550, '10 MED, 12 LRG', 'OPEN', 'NO', '2022-11-26', 'UWI', 'Sagicor ATM, Leslie Robinson Hall', '02:31 pm', '02:36 pm', 2,'Chad Williams', 'CARD'),
 (2, 550, '1 MED', 'OPEN', 'NO', '2022-11-26', 'UWI', 'T5 Mighty Dragons, ELR Towers', '02:31 pm', '02:36 pm', 1,'Chad Williams', 'CARD'),
 (3, 1890, '5 MED, 12 LRG', 'OPEN', 'NO', '2022-12-02', 'Papine', 'Tastee, Papine Square', '02:35 pm', '02:42 pm', 2, 'Jason Campbell', 'CARD'),
 (4, 150, '4 MED', 'OPEN', 'NO', '2022-12-02', 'UWI', 'Taylor Block A', '08:01 am', '08:06 am', 2, 'Chad Williams', 'CARD'),
-(5, 1350, '12 LRG', 'OPEN', 'NO', '2022-12-02', 'Mona', 'Mona Road', '08:11 am', '08:14 am',4, 'Jason Campbell', 'CARD'),
+(5, 1350, '12 LRG', 'OPEN', 'NO', '2022-12-02', 'Mona', 'Mona Road', '08:11 am', '08:14 am',2, 'Jason Campbell', 'CARD'),
 (6, 870, '1 MED', 'OPEN', 'NO', '2022-12-02', 'Hope Pastures', '67 During Drive', '08:45 am', '08:53 am', 1,'Jason Campbell', 'CARD'),
 (7, 700, '1 LRG', 'OPEN', 'NO', '2022-12-02', 'Old Hope Road', 'Bob Marley Museum', '10:02 am', '10:07 am', 2,'Jason Campbell', 'CARD'),
 (8, 950, '7 MED', 'OPEN', 'NO', '2022-12-02', 'Jamaica College', 'Jamaica College Front Gate', '12:31 pm', '12:36 pm', 3,'Jason Campbell', 'CASH'),
 (9, 1990, '16 MED, 10 LRG', 'OPEN', 'NO', '2022-12-02', 'UWI', 'Irving Hall, Angels of Genesis Ground Floor', '01:24 pm', '01:30 pm', 1,'Chad Williams', 'CARD'),
-(10, 570, '4 MED', 'OPEN', 'NO', '2022-12-02', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm', 6, 'Chad Williams', 'CASH'),
-(11, 570, '4 MED', 'OPEN', 'NO', '2023-03-11', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm', 6, 'Chad Williams', 'CASH');
+(10, 570, '4 MED', 'OPEN', 'NO', '2022-12-02', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm', 2, 'Chad Williams', 'CASH'),
+(11, 570, '4 MED', 'OPEN', 'NO', '2023-03-11', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm', 1, 'Chad Williams', 'CASH');
  
 DROP TABLE IF EXISTS `adminUsers`;
 CREATE TABLE `adminUsers` (
