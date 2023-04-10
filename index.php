@@ -3,7 +3,7 @@
     require("MenuItem.php");
     if (!isset($_SESSION['cart']))
     {$_SESSION['cart'] = null;}
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -176,11 +176,7 @@
     <!--Shows business metrics in the form of a graph-->
     <div id = "metrics">
         
-        <button id="date">Switch</button>
         <h2>This Year's Orders</h2>
-        <div class = "graph"></div>
-        <div class = "graph"></div>
-        <div class = "graph"></div>
         <?php
             $manager->viewMetrics();
         ?>

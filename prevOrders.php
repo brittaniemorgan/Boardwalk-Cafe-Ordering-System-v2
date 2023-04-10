@@ -19,7 +19,7 @@
                     $foodID = explode(" ", $item)[0];
                     $foodSize = explode(" ", $item)[1];
                     $foods = $menu->getFood($foodID);
-                    $foodName = $foods[0]['name'];
+                    $foodName = $foods[0]->getName();
         ?>
             <li><?=$foodName?> (<?=$foodSize?>)</li>
             <?php endforeach?>
