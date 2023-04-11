@@ -27,7 +27,7 @@
     <title>Log In</title>
 </head>
 <body>
-    <form action="login.php" method="post">
+    <form action="LoginUI.php" method="post">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="username" required>
         <label for="password">Password</label>
