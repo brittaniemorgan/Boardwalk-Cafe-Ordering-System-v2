@@ -1,23 +1,15 @@
 <?php
 
 require_once 'DBManager.php';
-require_once 'Metrics.php';
 
 class UpdateMenuController{
     
     private $conn;
-    private $metrics;
-
-    function viewMetrics(){
-        
-        $this->metrics->generateReport();
-    }
 
     function __construct(){
 
         $db = DBManager::getDatabase();
         $this->conn = $db->getConn();
-        $this->metrics = new Metrics($db);
 
         
     }
