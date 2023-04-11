@@ -30,7 +30,7 @@
         $dbname = 'cafeInfo';
         
         $db = new DBManager($host, $username, $password, $dbname);
-        $manager = new UpdateMenuController($db);  
+        $manager = new UpdateMenuController();  
     ?>
 
     <div id="hero"> 

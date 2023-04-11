@@ -1,14 +1,18 @@
 <?php
 
 require_once 'DBManager.php';
+require_once 'Metrics.php';
 
 class UpdateMenuController{
     
     private $conn;
+    private $metrics;
 
-    function __construct($dbmanager){
+    function __construct(){
 
-        $this->conn = $dbmanager->getConn();
+        $db = DBManager::getDatabase();
+        $this->conn = $db->getConn();
+        $this->metrics = new Metrics($db);
 
         
     }
@@ -190,6 +194,11 @@ class UpdateMenuController{
         }else{
             echo 'Unable to put item out of stock';
         }
+    }
+
+    function viewMetrics(){
+        
+        $this->metrics->generateReport();
     }
 
 
