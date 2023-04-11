@@ -7,6 +7,7 @@
     <title>Updating Menu</title>
     
     <link rel="stylesheet" href="UpdateMenuPage.css">
+    
 
 </head>
 <body>
@@ -38,9 +39,8 @@
     </div>
 
     <div id="nav-buttons">
-
-        <a href="#update-menu" class="bottomlink">
-            <button class="topButton"><img src="images/downarrow.png">Update Menu</button>
+        <a href="http://localhost/comp2171-groupproject/ReportUI.php?filter=d">
+            <button id="view-report">View Reports</button>
         </a>
     </div>
 

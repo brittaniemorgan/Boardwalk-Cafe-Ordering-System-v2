@@ -11,11 +11,14 @@ body{
     font-size: 16px;
 
     box-sizing: border-box;
-
-    
-    
     
 }
+
+div{
+    margin: 25px;
+}
+
+
 
 #hero{
     background-image: url("images/managerBack.jpg");

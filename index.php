@@ -168,7 +168,10 @@
         
             </div>
         </section>
-        <button type="submit" name="finish" id="check">Ready to Checkout</button>
+        <a href="http://localhost/comp2171-groupproject/viewCart.php">
+            <button type="submit" name="finish" id="check">Ready to Checkout</button>
+        </a>
+        
 <!--
         <aside id="points">
             <?php

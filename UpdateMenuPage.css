@@ -11,10 +11,18 @@ body{
     font-size: 16px;
 
     box-sizing: border-box;
+    
+}
 
-    
-    
-    
+#view-report{
+    display: block;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 150px;
+    background-color: #6b4fa8;
+    margin-left: 25px;
 }
 
 #hero{
