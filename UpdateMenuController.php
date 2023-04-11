@@ -8,6 +8,11 @@ class UpdateMenuController{
     private $conn;
     private $metrics;
 
+    function viewMetrics(){
+        
+        $this->metrics->generateReport();
+    }
+
     function __construct(){
 
         $db = DBManager::getDatabase();
@@ -196,10 +201,7 @@ class UpdateMenuController{
         }
     }
 
-    function viewMetrics(){
-        
-        $this->metrics->generateReport();
-    }
+    
 
 
 }
