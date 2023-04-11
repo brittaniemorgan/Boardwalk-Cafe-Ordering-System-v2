@@ -108,7 +108,7 @@ class ReportController{
     function generateReport($filter){
              $results = $this->retrieveDB($filter);   # generate graphical representation of the data
             ?>
-            <h5>There were <?=$results['orders']?> orders placed. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> minutes.</h5>
+            <h5>There were <?=$results['orders']?> orders placed.</h5>
 
             <div id="orderRes">
                 <p>Orders placed from UWI - <?=$results['uwi_num']?></p>
