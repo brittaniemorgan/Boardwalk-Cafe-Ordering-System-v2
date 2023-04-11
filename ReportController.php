@@ -1,9 +1,10 @@
+<link rel="stylesheet" href="reportUI.css">
 <?php
 require_once 'DBManager.php';
 
 #view average time for order, days earnings 
 
-class Metrics{
+class ReportController{
 
     private $db;
     
@@ -104,8 +105,8 @@ class Metrics{
         
     }
 
-    function generateReport(){
-             $results = $this->retrieveDB('y');   # generate graphical representation of the data
+    function generateReport($filter){
+             $results = $this->retrieveDB($filter);   # generate graphical representation of the data
             ?>
             <h5>There were <?=$results['orders']?> orders placed. The average time it took to complete an order/get it ready for delivery was <?=$results['avg_time']?> minutes.</h5>
 
@@ -117,7 +118,7 @@ class Metrics{
                 <p>Orders placed from Old Hope Road - <?=$results['old_hope_num']?></p>
                 <p>Orders placed from Jamaica College - <?=$results['jc_num']?></p>
 
-            </div>
+            </div> 
             <!--Canvas to place pie chart on-->
             <canvas id="numChart" style="width:100%;max-width:700px"></canvas>
 
@@ -180,6 +181,8 @@ class Metrics{
 
         } 
     }
-
-
+    if (isset($_GET['filter'])){
+        $reportController = new ReportController(new DBManager);
+        $reportController->generateReport($_GET['filter']);
+    }
 ?>

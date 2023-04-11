@@ -6,7 +6,7 @@
         if ($_POST['password'] == $_POST['password-re-entry']){
             $auth = new Login();
             $_SESSION['user'] = $auth->registerNewUser($_POST['username'], $_POST['password']);
-            header('Location: login.php'); 
+            header('Location: LoginUI.php'); 
         }
         else{
             $error_message = "Ensure both passwords match";

@@ -1,14 +1,23 @@
 //import {OrderProcessor} from "./OrderProcessor.js" ;
-import { RequestManager } from "./RequestManager.js";
 window.onload = function(){
-    var orderList;
 
-    var reqManager = new RequestManager();
+    function getFoodDetails(foodID){
+        var url = "http://localhost/comp2171-groupproject/Menu.php?foodID=" + foodID;
+        let request = new XMLHttpRequest();
+        request.onreadystatechange = function(){
+        if (request.readyState === XMLHttpRequest.DONE){
+            if (request.status === 200){
+                document.querySelector("#item-description").innerHTML = request.responseText;
+            }}
+        }
+        request.open("GET", url);
+        request.send();
+    }
 
     function openPopUp(e) {
         var btn = e.target;
         var foodID = btn.getAttribute("itemid");
-        reqManager.getFoodDetails(foodID);
+        getFoodDetails(foodID);
         var overlay = document.querySelector("#overLay");
         overlay.style.display = "block";
     }
@@ -21,25 +30,8 @@ window.onload = function(){
     }
 
     var checkout = document.getElementById("check");
-    checkout.addEventListener("click",viewCart);
-    function viewCart(e){
-        reqManager.checkout();
-    }
 
-    function updateOrderReady(e){
-        var btn = e.target;
-        var orderId = btn.getAttribute("id");
-        console.log(orderId);
-        reqManager.sendUpdate("http://localhost/comp2171-groupproject/Server.php?action=updateReady&orderId=" + orderId, orderId,"ready");
-    }
-
-    function updateOrderPreparing(e){
-        var btn = e.target;
-        var orderId = btn.getAttribute("id");
-        console.log(orderId);
-        reqManager.sendUpdate("http://localhost/comp2171-groupproject/Server.php?action=updatePrepare&orderId=" + orderId, orderId,"prep");
-    }
-
+   
     var foodButtons = document.getElementsByClassName("addToOrderButton");
     for (var i = 0; i < foodButtons.length ; i++){
         foodButtons[i].addEventListener("click",openPopUp);

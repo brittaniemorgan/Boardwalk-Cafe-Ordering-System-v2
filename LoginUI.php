@@ -15,8 +15,6 @@
             header('Location: index.php');  
         }
     }
-   if(isset($_SESSION['user'])){
-        header('Location: index.php');  }
 #extra condition to return customer
 ?>
 
@@ -29,7 +27,7 @@
     <title>Log In</title>
 </head>
 <body>
-    <form action="login.php" method="post">
+    <form action="LoginUI.php" method="post">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="username" required>
         <label for="password">Password</label>

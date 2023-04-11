@@ -6,9 +6,10 @@ class UpdateMenuController{
     
     private $conn;
 
-    function __construct($dbmanager){
+    function __construct(){
 
-        $this->conn = $dbmanager->getConn();
+        $db = DBManager::getDatabase();
+        $this->conn = $db->getConn();
 
         
     }
@@ -191,6 +192,8 @@ class UpdateMenuController{
             echo 'Unable to put item out of stock';
         }
     }
+
+    
 
 
 }
