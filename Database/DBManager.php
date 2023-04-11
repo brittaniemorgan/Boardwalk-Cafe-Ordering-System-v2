@@ -178,33 +178,6 @@ class DBManager{
 
        }
 
-    
-    function orderInfo($orderId){
-        
-        $stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE `id` = :orderId");
-        $stmt->bindParam(':orderId', $orderId, PDO::PARAM_INT);
-
-        if($stmt->execute()){
-            if($stmt->rowCount() > 0){
-                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                foreach($results as $row){
-                    $info = $row['items'];
-                }
-                
-                return $info;
-
-            }else{
-                return 'couldnt find order';
-            }
-
-        }else{
-            return 'an error';
-        }
-
-        #select last order - might need
-        #$stmt = $this->conn->prepare("SELECT id FROM orders ORDER BY :id DESC LIMIT 1");
-    }
 
     function getDateOrders($date,$filter){
         if($filter == 'd'){$stmt = $this->conn->prepare("SELECT * FROM `orders` WHERE `date` = :date");
