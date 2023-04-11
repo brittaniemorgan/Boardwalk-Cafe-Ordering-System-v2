@@ -84,7 +84,7 @@ INSERT INTO `orders` VALUES (1, 1550, '10 MED, 12 LRG', 'CLSD', 'YES', '2023-02-
 (6, 870, '1 MED', 'OPEN', 'NO', '2023-04-11', 'Hope Pastures', '67 During Drive', '08:45 am', '08:53 am', 1,'Jason Campbell', 'CARD'),
 (7, 700, '1 LRG', 'CLSD', 'YES', '2023-03-11', 'Old Hope Road', 'Bob Marley Museum', '10:02 am', '10:07 am', 2,'Jason Campbell', 'CARD'),
 (8, 950, '7 MED', 'CLSD', 'YES', '2023-03-02', 'Jamaica College', 'Jamaica College Front Gate', '12:31 pm', '12:36 pm', 1,'Jason Campbell', 'CASH'),
-(9, 1990, '16 MED, 10 LRG', 'OPEN', 'YES', '2023-01-02', 'UWI', 'Irving Hall, Angels of Genesis Ground Floor', '01:24 pm', '01:30 pm', 1,'Chad Williams', 'CARD'),
+(9, 1990, '16 MED, 10 LRG', 'CLSD', 'YES', '2023-01-02', 'UWI', 'Irving Hall, Angels of Genesis Ground Floor', '01:24 pm', '01:30 pm', 1,'Chad Williams', 'CARD'),
 (10, 570, '4 MED', 'CLSD', 'YES', '2023-04-08', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm', 2, 'Chad Williams', 'CASH'),
 (11, 570, '4 MED', 'CLSD', 'YES', '2023-03-11', 'UWI', 'T4 Orion, ELR Towers', '02:31 pm', '02:36 pm', 1, 'Chad Williams', 'CASH');
  
