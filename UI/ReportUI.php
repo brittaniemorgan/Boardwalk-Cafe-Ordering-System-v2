@@ -38,7 +38,7 @@
         private $title;
         function __construct(){
             $this->filters = ['d', 'm', 'y'];
-            $this->reportController = new ReportController(new DBManager());
+            $this->reportController = new ReportController(DBManager::getDatabase());
         }
 
         function viewReport($filter){
