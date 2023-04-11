@@ -1,0 +1,52 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "35a7093831bc810dece80554c663e308",
+    "packages": [
+        {
+            "name": "comp2171-groupproject/security",
+            "version": "dev-packages",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RLampart/comp2171-groupproject.git",
+                "reference": "d284518aed6f3368812e88f3bdf7b4974fa31530"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RLampart/comp2171-groupproject/zipball/d284518aed6f3368812e88f3bdf7b4974fa31530",
+                "reference": "d284518aed6f3368812e88f3bdf7b4974fa31530",
+                "shasum": ""
+            },
+            "type": "project",
+            "license": [
+                "NA"
+            ],
+            "authors": [
+                {
+                    "name": "Brittanie Morgan",
+                    "email": "brittaniemorgan12345@gmail.com"
+                }
+            ],
+            "description": "This package allows the creation and verification of user accounts",
+            "support": {
+                "source": "https://github.com/RLampart/comp2171-groupproject/tree/packages",
+                "issues": "https://github.com/RLampart/comp2171-groupproject/issues"
+            },
+            "time": "2023-04-11T06:31:42+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "comp2171-groupproject/security": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

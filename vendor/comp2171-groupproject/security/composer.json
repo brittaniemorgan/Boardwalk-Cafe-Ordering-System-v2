@@ -1,0 +1,14 @@
+{
+    "name": "comp2171-groupproject/security",
+    "description": "This package allows the creation and verification of user accounts",
+    "type": "project",
+    "license": "NA",
+    "authors": [
+        {
+            "name": "Brittanie Morgan",
+            "email": "brittaniemorgan12345@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}

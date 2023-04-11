@@ -1,14 +1,11 @@
 {
-    "name": "comp2171-groupproject/security",
-    "description": "This package allows the creation and verification of user accounts",
-    "type": "project",
-    "license": "NA",
-    "authors": [
+    "repositories" : [
         {
-            "name": "Brittanie Morgan",
-            "email": "brittaniemorgan12345@gmail.com"
+            "type": "vcs",
+            "url" : "https://github.com/RLampart/comp2171-groupproject.git"
         }
     ],
-    "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "comp2171-groupproject/security" : "dev-packages"
+    }
 }

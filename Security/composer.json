@@ -4,5 +4,14 @@
     "type": "project",
     "license": "NA",
     "minimum-stability": "stable",
-    "require": {}
+
+    "repositories" : [
+        {
+            "type": "vcs",
+            "url" : "https://github.com/RLampart/comp2171-groupproject.git"
+        }
+    ],
+    "require": {
+        "comp2171-groupproject/database" : "dev-packages"
+    }
 }

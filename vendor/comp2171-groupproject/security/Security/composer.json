@@ -1,0 +1,8 @@
+{
+    "name": "comp2171-groupproject/security",
+    "description": "This package allows the creation and verification of user accounts",
+    "type": "project",
+    "license": "NA",
+    "minimum-stability": "stable",
+    "require": {}
+}

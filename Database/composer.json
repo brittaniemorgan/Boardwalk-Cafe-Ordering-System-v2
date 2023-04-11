@@ -1,0 +1,8 @@
+{
+    "name": "comp2171-groupproject/database",
+    "description": "This stores and retrives information on the menu,users and orders",
+    "type": "project",
+    "license": "NA",
+    "minimum-stability": "stable",
+    "require": {}
+}
