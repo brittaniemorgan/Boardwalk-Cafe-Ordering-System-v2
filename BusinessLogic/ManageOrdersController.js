@@ -7,7 +7,7 @@ window.onload = function(){
             var btn = e.target;
             var orderId = btn.getAttribute("id");
             let request = new XMLHttpRequest();
-            var url = "http://localhost/comp2171-groupproject/ManageOrdersUI.php?action=updateReady&orderId=" + orderId;
+            var url = "http://localhost/comp2171-groupproject/UI/ManageOrdersUI.php?action=updateReady&orderId=" + orderId;
             console.log(orderId);
             request.onreadystatechange = function(){
                 if (request.readyState === XMLHttpRequest.DONE){
@@ -24,7 +24,7 @@ window.onload = function(){
             var btn = e.target;
             var orderId = btn.getAttribute("id");
             let request = new XMLHttpRequest();
-            var url = "http://localhost/comp2171-groupproject/ManageOrdersUI.php?action=updatePrepare&orderId=" + orderId;
+            var url = "http://localhost/comp2171-groupproject/UI/ManageOrdersUI.php?action=updatePrepare&orderId=" + orderId;
             console.log(orderId);
             request.onreadystatechange = function(){
                 if (request.readyState === XMLHttpRequest.DONE){

@@ -1,7 +1,7 @@
 <?php
-require_once "Customer.php";
+require_once "../BusinessLogic/Customer.php";
 session_start();
-require_once "DBManager.php";
+require_once "../Database/DBManager.php";
 $db = DBManager::getDatabase();
 $conn = $db -> getConn();
     $products = $_SESSION['cart'];
@@ -17,7 +17,7 @@ $conn = $db -> getConn();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="viewCart.css">
+    <link rel="stylesheet" href="../UI/viewCart.css">
 </head>
     <body>
         
@@ -27,7 +27,7 @@ $conn = $db -> getConn();
                 <h3 class="Cart">Your Cart</h3>
             </div>
 
-            <form action="OrderController.php" method="post">
+            <form action="../BusinessLogic/OrderController.php" method="post">
                 <?php if (!$products): ?>
                     <p>You have no products added in your Shopping Cart</p>
                 <?php else:?>

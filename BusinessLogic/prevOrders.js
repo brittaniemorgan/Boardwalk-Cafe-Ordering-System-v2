@@ -13,7 +13,7 @@ window.onload = function(){
                 }
             }
         }
-        request.open("GET", "http://localhost/comp2171-groupproject/prevOrders.php?orderId=" + orderId);
+        request.open("GET", "http://localhost/comp2171-groupproject/UI/prevOrders.php?orderId=" + orderId);
         request.send();   
     }
 

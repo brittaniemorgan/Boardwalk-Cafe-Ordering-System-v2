@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="reportUI.css">
 <?php
-require_once 'DBManager.php';
+require_once '../Database/DBManager.php';
 
 #view average time for order, days earnings 
 

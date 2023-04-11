@@ -2,7 +2,8 @@
 window.onload = function(){
 
     function getFoodDetails(foodID){
-        var url = "http://localhost/comp2171-groupproject/Menu.php?foodID=" + foodID;
+        console.log("ok");
+        var url = "http://localhost/comp2171-groupproject/BusinessLogic/Menu.php?foodID=" + foodID;
         let request = new XMLHttpRequest();
         request.onreadystatechange = function(){
         if (request.readyState === XMLHttpRequest.DONE){

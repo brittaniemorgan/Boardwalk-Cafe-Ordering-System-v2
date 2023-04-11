@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Updating Menu</title>
     
-    <link rel="stylesheet" href="UpdateMenuPage.css">
+    <link rel="stylesheet" href="../UI/UpdateMenuPage.css">
     
 
 </head>
@@ -17,8 +17,8 @@
             //header('Location: index.php');
         }*/
         
-        require_once 'DBManager.php';
-        require_once 'UpdateMenuController.php';
+        require_once '../Database/DBManager.php';
+        require_once '../BusinessLogic/UpdateMenuController.php';
 
         #turn on error reporting
         ini_set('display_errors', 'On');
@@ -39,7 +39,7 @@
     </div>
 
     <div id="nav-buttons">
-        <a href="http://localhost/comp2171-groupproject/ReportUI.php?filter=d">
+        <a href="http://localhost/comp2171-groupproject/UI/ReportUI.php?filter=d">
             <button id="view-report">View Reports</button>
         </a>
     </div>
@@ -63,7 +63,7 @@
         
         <!--Add to menu-->
         <h4>Add Menu Item</h4>
-        <form action="UpdateMenuController.php" method="post" id="add-form" enctype="multipart/form-data">
+        <form action="../BusinessLogic/UpdateMenuController.php" method="post" id="add-form" enctype="multipart/form-data">
             <label for="name">Name:</label>
             <input id="name" name="name" type="text" maxlength="50" required placeholder="Item Name">
 
@@ -93,7 +93,7 @@
         <!--Edit menu-->
         <h4>Edit Menu Item</h4>
         
-        <form action="UpdateMenuController.php" method="post" id="edit-form">
+        <form action="../BusinessLogic/UpdateMenuController.php" method="post" id="edit-form">
             
             <select name="menu-for-edit" id="menu-for-edit">
                 <?php
@@ -130,7 +130,7 @@
 
         <!--Delete from menu-->
         <h4>Delete Menu Item</h4>
-        <form action="UpdateMenuController.php" method="post"id="delete-form">
+        <form action="../BusinessLogic/UpdateMenuController.php" method="post"id="delete-form">
             <select name="menu-for-del" id="menu-for-del">
                 <?php
                     $results = $db->menuInfo();
@@ -145,7 +145,7 @@
         
         <!--Mark as out of stock-->
         <h4>Mark Item Out of Stock</h4>
-        <form action="UpdateMenuController.php" method="post"id="out-stock-form">
+        <form action="../BusinessLogic/UpdateMenuController.php" method="post"id="out-stock-form">
             <select name="menu-for-out" id="menu-for-out">
                 <?php
                     $results = $db->menuInfo();
@@ -159,7 +159,7 @@
         
         <!--Mark as in stock-->
         <h4>Mark Item In Stock</h4>
-        <form action="UpdateMenuController.php" method="post"id="in-stock-form">
+        <form action="../BusinessLogic/UpdateMenuController.php" method="post"id="in-stock-form">
             <select name="menu-for-in" id="menu-for-out">
                 <?php
                     $results = $db->menuInfo();
@@ -172,7 +172,7 @@
         </form>
 
         <a href="#" class="toplink">
-            <button class="linkButton"><img src="images/toparrow.png">Back to top</button>
+            <button class="linkButton"><img src="../images/toparrow.png">Back to top</button>
         </a>
 
     </div>

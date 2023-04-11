@@ -1,7 +1,7 @@
 <?php
-    require "OrderController.php";
+    require "../BusinessLogic/OrderController.php";
     if (!isset($_SESSION['admin'])) {
-        header('Location: index.php');
+        header('Location: ../UI/index.php');
     }
 ?>
 
@@ -12,8 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery Personnel - The Boardwalk Cafe</title>
-    <script src="ManageDeliveriesController.js"></script>
-    <link rel="stylesheet" href="ManageDeliveries.css">
+    <script src="../BusinessLogic/ManageDeliveriesController.js"></script>
+    <link rel="stylesheet" href="../UI/ManageDeliveries.css">
 </head>
 <body>
     <?php

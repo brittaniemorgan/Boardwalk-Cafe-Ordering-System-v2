@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="../UI/index.css">
 <?php
 /**
 *@package Database

@@ -5,7 +5,7 @@ window.onload=function(){
             var btn = e.target;
             var orderId = btn.getAttribute("id");
             //console.log(orderId);
-            let url = "http://localhost/comp2171-groupproject/ManageDeliveriesUI.php?orderID=" + orderId;
+            let url = "http://localhost/comp2171-groupproject/UI/ManageDeliveriesUI.php?orderID=" + orderId;
             let request = new XMLHttpRequest();
             request.onreadystatechange = function(){
                 if (request.readyState === XMLHttpRequest.DONE){

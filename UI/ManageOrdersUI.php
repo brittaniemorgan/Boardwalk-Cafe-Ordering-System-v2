@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Management</title>
-    <link rel="stylesheet" href="ManageOrders.css">
-    <script src="ManageOrdersController.js"></script>
+    <link rel="stylesheet" href="../UI/ManageOrders.css">
+    <script src="../BusinessLogic/ManageOrdersController.js"></script>
 </head>
 
 
 <?php
-    require "OrderController.php";
+    require "../BusinessLogic/OrderController.php";
     class ManageOrdersController{
         private $db;
         private $conn;

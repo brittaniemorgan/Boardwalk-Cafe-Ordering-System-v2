@@ -1,6 +1,6 @@
 <?php
 
-require_once 'DBManager.php';
+require_once '../Database/DBManager.php';
 
 class UpdateMenuController{
     
@@ -53,7 +53,7 @@ class UpdateMenuController{
                 $stmt->bindParam(':large_price', $lrg_price, PDO::PARAM_INT);
 
                 if($stmt->execute()){
-                    move_uploaded_file($_FILES['menu-item-image']['tmp_name'], "images/$imgName");
+                    move_uploaded_file($_FILES['menu-item-image']['tmp_name'], "../images/$imgName");
                     echo '<script>alert("Item added")</script>';
                     echo("<script>window.location = 'UpdateMenuUI.php';</script>");
 
@@ -104,7 +104,7 @@ class UpdateMenuController{
                 if($stmt->execute()){
 
                     #deletes item image from folder
-                    unlink("images/".$results[0]['image']);
+                    unlink("../images/".$results[0]['image']);
 
                     echo '<script>alert("Item Deleted")</script>';
                     echo("<script>window.location = 'UpdateMenuUI.php';</script>");
@@ -205,16 +205,25 @@ $password = 'password123';
 $dbname = 'cafeInfo';
 
 $db = new DBManager($host, $username, $password, $dbname);
-$manager = new UpdateMenuController($db);
+$updateMenuController = new UpdateMenuController($db);
 
 if(isset($_POST['add-to-menu'])){
-    $manager->addMenuItem();
-}elseif(isset($_POST['del-from-menu'])){
-    $manager->deleteMenuItem();
-}elseif(isset($_POST['edit-menu'])){
-    $manager->editMenuItem();
-}elseif(isset($_POST['out-from-menu'])){
-    $manager->outOfStock();
-}elseif(isset($_POST['in-from-menu'])){
-    $manager->inStock();
+    $updateMenuController->addMenuItem();
+    header("Location: ../UI/UpdateMenuUI.php");
+}
+elseif(isset($_POST['del-from-menu'])){
+    $updateMenuController->deleteMenuItem();
+    header("Location: ../UI/UpdateMenuUI.php");
+}
+elseif(isset($_POST['edit-menu'])){
+    $updateMenuController->editMenuItem();
+    header("Location: ../UI/UpdateMenuUI.php");
+}
+elseif(isset($_POST['out-from-menu'])){
+    $updateMenuController->outOfStock();
+    header("Location: ../UI/UpdateMenuUI.php");
+}
+elseif(isset($_POST['in-from-menu'])){
+    $updateMenuController->inStock();
+    header("Location: ../UI/UpdateMenuUI.php");
 }

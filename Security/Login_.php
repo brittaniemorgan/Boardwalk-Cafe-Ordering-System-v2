@@ -1,6 +1,6 @@
 <?php
-    require "DBManager.php";
-    require "Customer.php";
+    require "../Database/DBManager.php";
+    require "../BusinessLogic/Customer.php";
 
     class Login{
         private $stmt;
@@ -36,19 +36,19 @@
                     
                     switch($_SESSION['admin'][2]){
                     case 'manager':
-                        header('Location: UpdateMenuUI.php'); 
+                        header('Location: ../UI/UpdateMenuUI.php'); 
                         break;
                     case 'server':
-                        header('Location: ManageOrdersUI.php'); 
+                        header('Location: ../UI/ManageOrdersUI.php'); 
                         break;
                     case 'UWI Delivery':
-                        header('Location: ManageDeliveriesUI.php'); 
+                        header('Location: ../UI/ManageDeliveriesUI.php'); 
                         break;
                     case 'General Delivery':
-                        header('Location: ManageDeliveriesUI.php'); 
+                        header('Location: ../UI/ManageDeliveriesUI.php'); 
                         break;
                     case 'chef': 
-                        header('Location: ManageOrdersUI.php');
+                        header('Location: ../UI/ManageOrdersUI.php');
                         break;
                     }            
                 }

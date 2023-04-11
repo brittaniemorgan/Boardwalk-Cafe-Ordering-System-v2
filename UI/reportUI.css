@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Arial-Black';
-    src: url(fonts/arial-black.ttf);
+    src: url(../fonts/arial-black.ttf);
 }
 
 body{
@@ -14,33 +14,23 @@ body{
     
 }
 
-#view-report{
-    display: block;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    height: 50px;
-    width: 150px;
-    background-color: #6b4fa8;
-    margin-left: 25px;
+div{
+    margin: 25px;
 }
 
+
+
 #hero{
-    background-image: url("images/managerBack.jpg");
+    background-image: url("../images/managerBack.jpg");
     background-size: cover;
     height: 200px;
-    margin: 25px;
+    margin: -25px;
     padding: 20px;
     color: #fff;
 }
 
 h2{
     margin-top: 90px;
-    margin-left: 25px;
-}
-
-h4{
-    margin-left: 25px;
 }
 
 #nav-buttons{
@@ -107,54 +97,33 @@ form h5{
     font-size: 20px;
 }
 
-
 input{
     margin-right: 15px;
-    margin-bottom: 15px;
 }
 
 input[type = text]{
-    display: block;
     border: none;
     border-radius: 5px;
-    height: 30px;
+    height: 20px;
     width: 30%;
 }
 
 input[type = submit]{
-    display: block;
     color: #fff;
     border: none;
     border-radius: 5px;
-    height: 40px;
-    width: 15%;
+    height: 20px;
     background-color: #4FA892;
 }
 
-input[type = number]{
-    border: none;
-    border-radius: 5px;
-    height: 30px;
-    width: 20%;
-    
-}
-
-select{
-    width: 15%;
-    height: 30px;
-    display:block;
-    margin-bottom: 15px;
-}
-
 #current-menu{
-    margin-left: 25px;
+
     margin-bottom: 70px; 
 }
 
 #current-menu td{
     display: inline-block;
     margin-bottom: 10px; 
-    font-size: 18px;
 }
 
 #small-menu{
@@ -202,4 +171,3 @@ canvas{
 
 h5{
     font-size: 20px;
-}

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require("MenuItem.php");
+    require("../BusinessLogic/MenuItem.php");
     if (!isset($_SESSION['cart']))
     {$_SESSION['cart'] = null;}
     
@@ -12,8 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Place an Order With Us</title>
-    <link rel="stylesheet" href="index.css">
-    <script src="script.js" type="module"></script>
+    <link rel="stylesheet" href="../UI/index.css">
+    <script src="../BusinessLogic/script.js" type="module"></script>
     
 </head>
 <body>
@@ -27,7 +27,7 @@
 
         <header>
             <span id="expandBtn" style="font-size:30px;cursor:pointer;color:white;" >&#9776;</span>
-            <img src="images/boardWalkLogo.png" alt="boardwalk cafe's logo" id="boardwalkHeaderLogo">
+            <img src="../images/boardWalkLogo.png" alt="boardwalk cafe's logo" id="boardwalkHeaderLogo">
     
             <br>
             <br>
@@ -40,10 +40,10 @@
                 
                 <!-- Overlay content -->
                 <div class="overlay-content">
-                <a href="index.php">Home</a>
-                <a href="prevOrders.php">Previous Orders</a>
+                <a href="../UI/index.php">Home</a>
+                <a href="../UI/prevOrders.php">Previous Orders</a>
                 <a href="https://www.instagram.com/theboardwalkcafeuwi/?hl=en">Contact</a>
-                <a href="adminLogIn.php">Admin</a>
+                <a href="../UI/adminLogIn.php">Admin</a>
                 </div>
 
             </div>
@@ -59,7 +59,7 @@
         <section id="menu-wrapper">
             <div id="menu-heading-wrapper">
                 <h2>Menu</h2>
-                <img src="images/menu-icon.png">
+                <img src="../images/menu-icon.png">
             </div>
         
             
@@ -67,7 +67,7 @@
                 
 
                 <?php
-                    require_once 'Menu.php';
+                    require_once '../BusinessLogic/Menu.php';
                     #require_once 'Rewards.php';
                     #turn on error reporting
                     ini_set('display_errors', 'On');
@@ -99,7 +99,7 @@
                                 
                                 <button class="addToOrderButtonDisabled"  id="<?=$menuItem->getId()?>"disabled>
                                     <div class="menuItem">
-                                        <img src=<?="images/".$menuItem->getImage()?> class="menuItemPic">
+                                        <img src=<?="../images/".$menuItem->getImage()?> class="menuItemPic">
                             
                                         <div class="menuItemContent"  id="<?=$menuItem->getId()?>">
                                             <h5>OUT OF STOCK</h5>
@@ -136,7 +136,7 @@
                            
                             <button class="addToOrderButton" id="<?=$menuItem->getId()?>">
                                 <div class="menuItem" id="<?=$menuItem->getId()?>">
-                                    <img src=<?="images/".$menuItem->getImage()?> class="menuItemPic" itemid="<?=$menuItem->getId()?>">
+                                    <img src=<?="../images/".$menuItem->getImage()?> class="menuItemPic" itemid="<?=$menuItem->getId()?>">
                         
                                     <div class="menuItemContent" id="<?=$menuItem->getId()?>" itemid="<?=$menuItem->getId()?>">
                                         
@@ -168,7 +168,7 @@
         
             </div>
         </section>
-        <a href="http://localhost/comp2171-groupproject/viewCart.php">
+        <a href="http://localhost/comp2171-groupproject/UI/viewCart.php">
             <button type="submit" name="finish" id="check">Ready to Checkout</button>
         </a>
         
@@ -182,15 +182,15 @@
         <footer>
             <div>
                 <a href="https://www.google.com/maps?q=boardwalk+cafe+uwi&client=safari&rls=en&sxsrf=ALiCzsaaDE19JITymRQ19W3vY_puAZNZAQ:1669570799134&uact=5&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzIECCMQJzIECCMQJzILCC4QgAQQxwEQrwE6BwgjELADECc6CggAEEcQ1gQQsAM6BwgAELADEEM6DAguEMgDELADEEMYAToPCC4Q1AIQyAMQsAMQQxgBOhIILhDHARCvARDIAxCwAxBDGAE6EAguEIAEEIcCEMcBEK8BEBQ6BQgAEIAEOgYIABAWEB5KBAhBGABKBAhGGAFQ4gZYmwxgww5oAXABeACAAdIBiAHaBJIBBTAuMy4xmAEAoAEByAESwAEB2gEGCAEQARgI&um=1&ie=UTF-8&sa=X&ved=2ahUKEwjU5qP18877AhXiRDABHdd5AA0Q_AUoAXoECAEQAw">
-                    <img src="images/location-icon.png">
+                    <img src="../images/location-icon.png">
                 </a>
 
                 <p>Boardwalk Caf&eacute; - UWI, Mona</p>
             </div>
             
             <div>
-                <a href="https://www.facebook.com/uwiboardwalkcafe"><img src="images/facebook-logo.png"></a>
-                <a href="https://www.instagram.com/theboardwalkcafeuwi/?hl=en"><img src="images/insta-logo.png"></a>
+                <a href="https://www.facebook.com/uwiboardwalkcafe"><img src="../images/facebook-logo.png"></a>
+                <a href="https://www.instagram.com/theboardwalkcafeuwi/?hl=en"><img src="../images/insta-logo.png"></a>
             </div>
             
         </footer>

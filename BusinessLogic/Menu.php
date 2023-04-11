@@ -1,6 +1,6 @@
 <?php
 
-require_once "DBManager.php";
+require_once "../Database/DBManager.php";
 class Menu{
 
     private $db;
@@ -31,7 +31,7 @@ class Menu{
 ?>
         <div> 
             <h2 id="foodName"><?= $results[0]["name"] ?></h2>
-            <form id="" action="OrderController.php" method="post">
+            <form id="" action="../BusinessLogic/OrderController.php" method="post">
                 <textarea name="foodID"  style="display: none;"><?= $foodID ?></textarea>
                 <?php
         if ($results[0]["large_size"] != null):

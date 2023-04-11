@@ -1,6 +1,6 @@
 <?php
- require_once "Customer.php";
- require_once "DBManager.php";
+ require_once "../BusinessLogic/Customer.php";
+ require_once "../Database/DBManager.php";
  class Order {
 
     private static $orderCount = 1;

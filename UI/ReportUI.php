@@ -6,32 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager - The Boardwalk Cafe</title>
-    <link rel="stylesheet" href="reportUI.css">
+    <link rel="stylesheet" href="../UI/reportUI.css">
 
 </head>
 <body>
     <h1>Report</h1>
-    <a href="http://localhost/comp2171-groupproject/ReportUI.php?filter=d">
+    <a href="http://localhost/comp2171-groupproject/UI/ReportUI.php?filter=d">
         <button>View Today's Report</button>
     </a>
-    <a href="http://localhost/comp2171-groupproject/ReportUI.php?filter=m">
+    <a href="http://localhost/comp2171-groupproject/UI/ReportUI.php?filter=m">
         <button>View This Month's Report</button>
     </a>
     
-    <a href="http://localhost/comp2171-groupproject/ReportUI.php?filter=y">
+    <a href="http://localhost/comp2171-groupproject/UI/ReportUI.php?filter=y">
         <button>View This Year's Report</button>
     </a>
 
     <div>
-    <a href="http://localhost/comp2171-groupproject/UpdateMenu.php">
+    <a href="http://localhost/comp2171-groupproject/UI/UpdateMenu.php">
         <button>Update Menu</button>
     </a>
     </div>
     </body>
 </html> 
     <?php
-    require_once 'Menu.php';
-    require 'ReportController.php';
+    require_once '../BusinessLogic/Menu.php';
+    require '../BusinessLogic/ReportController.php';
     class ReportUI{
         private $filters;
         private $reportController;

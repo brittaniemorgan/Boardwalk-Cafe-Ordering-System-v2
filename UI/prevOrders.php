@@ -1,7 +1,8 @@
-<script src="prevOrders.js" type="text/javascript"></script>
+<script src="../BusinessLogic/prevOrders.js" type="text/javascript"></script>
+<link rel="stylesheet" href="../UI/prevOrders.css">
 <?php
-    require_once "OrderController.php";
-    require_once "Menu.php";
+    require_once "../BusinessLogic/OrderController.php";
+    require_once "../BusinessLogic/Menu.php";
    
    // $cusId = $_SESSION['user']->getId();
 

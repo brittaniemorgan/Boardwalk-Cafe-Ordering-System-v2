@@ -1,7 +1,7 @@
 <?php
-require "DBManager.php";
-require "Order.php";
-require "MenuItem.php";
+require "../Database/DBManager.php";
+require "../BusinessLogic/Order.php";
+require "../BusinessLogic/MenuItem.php";
 
 session_start();
 
@@ -101,7 +101,7 @@ if(isset($_POST["payment"]))
     $OC = new OrderController();
     $OC->checkout($address,$payment,$location,$reward);
     unset($_SESSION['cart']);
-    header('Location: index.php');
+    header('Location: ../UI/index.php');
 }
 elseif(isset($_POST["add-to-cart-btn"])){
 $OC = new OrderController();
@@ -115,5 +115,5 @@ else{
 //var_dump($_SESSION['cart']);
 $OC->addOrder($foodID,htmlspecialchars($size));
 
-header('Location: index.php');  }
+header('Location: ../UI/index.php');  }
     ?>
