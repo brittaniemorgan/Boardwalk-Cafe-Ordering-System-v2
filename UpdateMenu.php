@@ -31,7 +31,7 @@
         $dbname = 'cafeInfo';
         
         $db = new DBManager($host, $username, $password, $dbname);
-        $manager = new UpdateMenuController($db);  
+        $manager = new UpdateMenuController();  
     ?>
 
     <div id="hero"> 
@@ -175,6 +175,22 @@
             <button class="linkButton"><img src="images/toparrow.png">Back to top</button>
         </a>
 
+    </div>
+
+    <!--Shows business metrics in the form of a graph-->
+    <div id = "metrics">
+        
+        <button id="date">Switch</button>
+        <h2>This Year's Orders</h2>
+        <div class = "graph"></div>
+        <div class = "graph"></div>
+        <div class = "graph"></div>
+        <?php
+            $manager->viewMetrics();
+        ?>
+        <a href="#" class="toplink">
+            <button class="linkButton"><img src="images/toparrow.png">Back to top</button>
+        </a>
     </div>
 
 </body>
